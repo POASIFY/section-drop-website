@@ -7,240 +7,360 @@
 <meta name="description" content="Buy professionally designed Liquid sections for your Shopify 2.0 theme. One-time purchase, yours forever. No coding required.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--black:#0d0d0d;--white:#ffffff;--off:#f7f6f3;--border:#e8e6e0;--mid:#888;--light:#f2f1ed}
+:root{
+  --hero-bg:#060d1f;
+  --hero-mid:#0d1832;
+  --blue:#2563eb;
+  --blue-light:#3b82f6;
+  --blue-dim:rgba(37,99,235,0.15);
+  --white:#ffffff;
+  --off:#f8f9fc;
+  --text:#111827;
+  --muted:#6b7280;
+  --border:#e5e7eb;
+  --border-dark:rgba(255,255,255,0.08);
+  --card-dark:#0d1832;
+  --radius:12px;
+}
 html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:var(--white);color:var(--black);-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.6}
+body{font-family:'Geist',system-ui,sans-serif;background:var(--white);color:var(--text);-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.6;overflow-x:hidden}
 
-/* ---- NAV ---- */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.125rem 2rem;background:rgba(255,255,255,0.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
-.logo{font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:800;color:var(--black);text-decoration:none;letter-spacing:-0.02em}
-.nav-right{display:flex;align-items:center;gap:1.25rem}
-.lang-sw{display:flex;gap:2px;background:var(--light);border-radius:6px;padding:3px}
-.lang-btn{background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:0.75rem;font-weight:500;color:var(--mid);padding:0.25rem 0.625rem;border-radius:4px;transition:all 0.15s;letter-spacing:0.04em;text-transform:uppercase}
-.lang-btn.active{background:var(--white);color:var(--black);box-shadow:0 1px 3px rgba(0,0,0,0.1)}
-.nav-cta{display:inline-flex;align-items:center;gap:0.5rem;background:var(--black);color:var(--white);text-decoration:none;font-size:0.875rem;font-weight:500;padding:0.625rem 1.25rem;border-radius:8px;transition:opacity 0.15s;white-space:nowrap}
-.nav-cta:hover{opacity:0.82}
-.nav-links{display:flex;gap:1.75rem}
-.nav-links a{font-size:0.875rem;color:var(--mid);text-decoration:none;transition:color 0.15s;cursor:pointer}
-.nav-links a:hover{color:var(--black)}
-
-/* ---- PAGE ROUTING ---- */
+/* ─── UTILITIES ─── */
+.wrap{max-width:1100px;margin:0 auto;padding:0 2rem}
 .page{display:none}.page.active{display:block}
+.eyebrow{display:inline-block;font-size:0.6875rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);margin-bottom:0.875rem}
+.eyebrow-dark{color:rgba(255,255,255,0.5)}
+.btn-blue{display:inline-flex;align-items:center;gap:0.5rem;background:var(--blue);color:#fff;font-family:inherit;font-size:0.9375rem;font-weight:500;padding:0.75rem 1.5rem;border-radius:8px;border:none;cursor:pointer;text-decoration:none;transition:background 0.15s,gap 0.2s;white-space:nowrap}
+.btn-blue:hover{background:var(--blue-light);gap:0.75rem}
+.btn-ghost{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(255,255,255,0.08);color:#fff;font-family:inherit;font-size:0.9375rem;font-weight:500;padding:0.75rem 1.5rem;border-radius:8px;border:1px solid rgba(255,255,255,0.12);cursor:pointer;text-decoration:none;transition:background 0.15s,gap 0.2s;white-space:nowrap}
+.btn-ghost:hover{background:rgba(255,255,255,0.14);gap:0.75rem}
+.btn-outline-dark{display:inline-flex;align-items:center;gap:0.5rem;background:transparent;color:var(--text);font-family:inherit;font-size:0.9375rem;font-weight:500;padding:0.75rem 1.5rem;border-radius:8px;border:1.5px solid var(--border);cursor:pointer;text-decoration:none;transition:border-color 0.15s,gap 0.2s}
+.btn-outline-dark:hover{border-color:#9ca3af;gap:0.75rem}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(1.875rem,3.5vw,2.75rem);font-weight:800;letter-spacing:-0.035em;line-height:1.1;color:var(--text)}
+.section-title-light{color:#fff}
 
-/* ---- SHARED ---- */
-.wrap{max-width:1080px;margin:0 auto;padding:0 2rem}
-.btn-black{display:inline-flex;align-items:center;gap:0.5rem;background:var(--black);color:var(--white);text-decoration:none;font-size:0.9375rem;font-weight:500;padding:0.875rem 1.75rem;border-radius:8px;transition:opacity 0.15s,gap 0.2s;border:none;cursor:pointer;font-family:inherit}
-.btn-black:hover{opacity:0.82;gap:0.75rem}
-.btn-outline{display:inline-flex;align-items:center;gap:0.5rem;background:transparent;color:var(--black);text-decoration:none;font-size:0.9375rem;font-weight:500;padding:0.875rem 1.5rem;border-radius:8px;border:1.5px solid var(--border);transition:border-color 0.15s,gap 0.2s;cursor:pointer;font-family:inherit}
-.btn-outline:hover{border-color:var(--black);gap:0.75rem}
-.eyebrow{display:inline-block;font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid);margin-bottom:1rem}
-.section-heading{font-family:'Syne',sans-serif;font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:800;line-height:1.1;letter-spacing:-0.03em}
+/* ─── NAV ─── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:64px;background:transparent;transition:background 0.3s,backdrop-filter 0.3s,border-color 0.3s;border-bottom:1px solid transparent}
+nav.scrolled{background:rgba(6,13,31,0.92);backdrop-filter:blur(20px);border-bottom-color:var(--border-dark)}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.25rem;color:#fff;text-decoration:none;letter-spacing:-0.02em;cursor:pointer;display:flex;align-items:center;gap:0.625rem}
+.nav-logo-icon{width:30px;height:30px;background:var(--blue);border-radius:8px;display:flex;align-items:center;justify-content:center}
+.nav-logo-icon svg{width:16px;height:16px;stroke:#fff;fill:none}
+.nav-center{display:flex;gap:2rem}
+.nav-center a{font-size:0.875rem;font-weight:500;color:rgba(255,255,255,0.7);text-decoration:none;cursor:pointer;transition:color 0.15s}
+.nav-center a:hover{color:#fff}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.lang-sw{display:flex;gap:2px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:7px;padding:3px}
+.lang-btn{background:none;border:none;cursor:pointer;font-family:'Geist',system-ui,sans-serif;font-size:0.75rem;font-weight:500;color:rgba(255,255,255,0.5);padding:0.25rem 0.625rem;border-radius:5px;transition:all 0.15s;text-transform:uppercase;letter-spacing:0.05em}
+.lang-btn.active{background:rgba(255,255,255,0.12);color:#fff}
 
-/* ---- HERO ---- */
-.hero{padding:8.5rem 0 5rem;border-bottom:1px solid var(--border)}
-.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
-.hero-label{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.8125rem;font-weight:500;color:var(--mid);background:var(--light);border:1px solid var(--border);padding:0.375rem 0.875rem;border-radius:999px;margin-bottom:1.75rem}
-.hero-title{font-family:'Syne',sans-serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:800;line-height:1.05;letter-spacing:-0.04em;margin-bottom:1.5rem}
-.hero-sub{font-size:1.0625rem;color:#555;line-height:1.7;margin-bottom:2rem;max-width:460px}
-.hero-actions{display:flex;align-items:center;gap:0.875rem;flex-wrap:wrap}
-.hero-visual{background:var(--light);border:1px solid var(--border);border-radius:16px;padding:2rem;display:flex;flex-direction:column;gap:0.75rem}
-.mock-bar{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:0.875rem 1rem;display:flex;align-items:center;justify-content:space-between}
-.mock-bar-left{display:flex;align-items:center;gap:0.625rem}
-.mock-icon{width:28px;height:28px;background:var(--black);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.mock-icon svg{width:14px;height:14px;stroke:var(--white)}
-.mock-name{font-size:0.875rem;font-weight:500}
-.mock-price{font-size:0.8125rem;font-weight:600;background:var(--black);color:var(--white);padding:0.25rem 0.625rem;border-radius:5px}
-.mock-badge{font-size:0.6875rem;font-weight:600;background:#e8f5e9;color:#2e7d32;padding:0.2rem 0.5rem;border-radius:4px}
-.hero-visual-title{font-size:0.6875rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--mid);margin-bottom:0.25rem}
+/* ─── HERO ─── */
+.hero{background:var(--hero-bg);min-height:100vh;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 60% 40%,rgba(37,99,235,0.18) 0%,transparent 70%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(37,99,235,0.4),transparent)}
+.hero-inner{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;padding:8rem 0 5rem}
+.hero-left{}
+.hero-tag{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(37,99,235,0.15);border:1px solid rgba(37,99,235,0.3);color:#93c5fd;font-size:0.8125rem;font-weight:500;padding:0.375rem 0.875rem;border-radius:999px;margin-bottom:2rem}
+.hero-tag-dot{width:6px;height:6px;background:#3b82f6;border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.6;transform:scale(1.2)}}
+.hero-title{font-family:'Syne',sans-serif;font-size:clamp(3rem,6vw,5rem);font-weight:800;line-height:1.0;letter-spacing:-0.045em;color:#fff;margin-bottom:1.5rem}
+.hero-title span{display:block}
+.hero-title .accent{color:var(--blue-light)}
+.hero-sub{font-size:1.0625rem;color:rgba(255,255,255,0.6);line-height:1.7;margin-bottom:2rem;max-width:420px}
+.hero-actions{display:flex;gap:0.875rem;flex-wrap:wrap;margin-bottom:2rem}
+.hero-built{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.8125rem;color:rgba(255,255,255,0.4)}
+.hero-built svg{width:14px;height:14px;fill:rgba(255,255,255,0.4)}
 
-/* ---- STRIPS ---- */
-.trust-strip{border-bottom:1px solid var(--border);padding:1.375rem 0}
+/* HERO VISUAL */
+.hero-visual{position:relative}
+.hero-mockup{background:linear-gradient(135deg,#0d1832 0%,#111d3d 100%);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:1.5rem;box-shadow:0 32px 80px rgba(0,0,0,0.5),0 0 0 1px rgba(37,99,235,0.1);overflow:hidden}
+.hero-mockup::before{content:'';position:absolute;top:-1px;left:20%;right:20%;height:1px;background:linear-gradient(90deg,transparent,rgba(37,99,235,0.6),transparent)}
+.mockup-bar{display:flex;gap:6px;margin-bottom:1.25rem}
+.mockup-dot{width:10px;height:10px;border-radius:50%}
+.mockup-dot:nth-child(1){background:#ff5f57}
+.mockup-dot:nth-child(2){background:#ffbd2e}
+.mockup-dot:nth-child(3){background:#28c840}
+.mockup-title{font-size:0.6875rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:1rem}
+.mockup-rows{display:flex;flex-direction:column;gap:0.5rem}
+.mockup-row{display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:0.75rem 1rem;animation:slideIn 0.4s ease both}
+.mockup-row:nth-child(1){animation-delay:0.1s}
+.mockup-row:nth-child(2){animation-delay:0.2s}
+.mockup-row:nth-child(3){animation-delay:0.3s}
+.mockup-row:nth-child(4){animation-delay:0.4s}
+.mockup-row:nth-child(5){animation-delay:0.5s}
+.mockup-row.highlight{background:rgba(37,99,235,0.12);border-color:rgba(37,99,235,0.3)}
+@keyframes slideIn{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:translateX(0)}}
+.mockup-row-left{display:flex;align-items:center;gap:0.75rem}
+.mockup-row-icon{width:28px;height:28px;background:var(--blue);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mockup-row-icon svg{width:13px;height:13px;stroke:#fff;fill:none}
+.mockup-row-name{font-size:0.875rem;font-weight:500;color:rgba(255,255,255,0.9)}
+.mockup-price{font-size:0.8125rem;font-weight:600;background:var(--blue);color:#fff;padding:0.2rem 0.625rem;border-radius:5px}
+.mockup-free{font-size:0.8125rem;font-weight:600;color:#34d399}
+.mockup-install-btn{display:flex;align-items:center;gap:0.375rem;background:var(--blue);color:#fff;font-size:0.75rem;font-weight:500;padding:0.375rem 0.75rem;border-radius:5px}
+.mockup-install-btn svg{width:11px;height:11px;stroke:#fff;fill:none}
+
+/* ─── TRUST BAR ─── */
+.trust-bar{background:#fff;border-bottom:1px solid var(--border);padding:1.25rem 0}
 .trust-inner{display:flex;align-items:center;justify-content:center;gap:2.5rem;flex-wrap:wrap}
-.trust-item{display:flex;align-items:center;gap:0.5rem;font-size:0.8125rem;font-weight:500;color:#555}
-.trust-item svg{width:14px;height:14px;stroke:var(--black);flex-shrink:0}
+.trust-item{display:flex;align-items:center;gap:0.5rem;font-size:0.8125rem;font-weight:500;color:#374151}
+.trust-check{width:18px;height:18px;background:var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.trust-check svg{width:10px;height:10px;stroke:#fff;fill:none}
 
-/* ---- FEATURE BLOCKS ---- */
-.features{padding:5rem 0}
-.features-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:16px;overflow:hidden}
-.feat{background:var(--white);padding:2.25rem 2rem}
-.feat-icon{width:40px;height:40px;background:var(--light);border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem}
-.feat-icon svg{width:18px;height:18px;stroke:var(--black)}
-.feat-title{font-family:'Syne',sans-serif;font-size:1.125rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:0.625rem}
-.feat-body{font-size:0.875rem;color:#666;line-height:1.65}
+/* ─── FEATURES ─── */
+.features{padding:6rem 0;background:#fff}
+.features-header{text-align:center;margin-bottom:3.5rem}
+.features-header p{font-size:1rem;color:var(--muted);margin-top:0.75rem}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.feat{background:#fff;padding:2rem;transition:background 0.15s}
+.feat:hover{background:var(--off)}
+.feat-icon{width:40px;height:40px;background:#eff6ff;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem}
+.feat-icon svg{width:20px;height:20px;stroke:var(--blue);fill:none}
+.feat-title{font-family:'Syne',sans-serif;font-size:1.0625rem;font-weight:700;letter-spacing:-0.02em;color:var(--text);margin-bottom:0.5rem}
+.feat-body{font-size:0.875rem;color:var(--muted);line-height:1.65}
 
-/* ---- HOW SECTION ---- */
-.how{padding:5rem 0;border-top:1px solid var(--border)}
-.how-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+/* ─── HOW IT WORKS ─── */
+.how{padding:6rem 0;background:var(--off);border-top:1px solid var(--border)}
+.how-header{text-align:center;margin-bottom:4rem}
 .how-steps{display:flex;flex-direction:column;gap:0}
-.how-step{display:flex;gap:1.25rem;padding:1.5rem 0;border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.15s}
+.how-step{display:grid;grid-template-columns:120px 1fr 1fr;gap:2rem;align-items:center;padding:3rem 0;border-bottom:1px solid var(--border);position:relative}
 .how-step:last-child{border-bottom:none}
-.how-step-num{font-family:'Syne',sans-serif;font-size:0.75rem;font-weight:800;color:var(--mid);width:28px;flex-shrink:0;padding-top:3px}
+.how-step-num{font-family:'Syne',sans-serif;font-size:5rem;font-weight:800;color:var(--border);line-height:1;text-align:center;letter-spacing:-0.05em}
 .how-step-content{}
-.how-step-title{font-size:0.9375rem;font-weight:600;margin-bottom:0.375rem}
-.how-step-body{font-size:0.875rem;color:#666;line-height:1.65}
-.how-visual{background:var(--light);border:1px solid var(--border);border-radius:16px;padding:2rem;position:sticky;top:6rem}
-.how-visual-inner{display:flex;flex-direction:column;gap:0.625rem}
-.how-row{display:flex;align-items:center;gap:0.75rem;background:var(--white);border:1px solid var(--border);border-radius:8px;padding:0.875rem 1rem}
-.how-row-num{width:22px;height:22px;background:var(--black);border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:0.625rem;font-weight:700;color:var(--white);flex-shrink:0}
-.how-row-label{font-size:0.875rem;font-weight:500}
-.how-row-sub{font-size:0.75rem;color:var(--mid);margin-left:auto;white-space:nowrap}
-.how-row.active-row{border-color:var(--black)}
+.how-step-icon{width:44px;height:44px;background:var(--blue);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem}
+.how-step-icon svg{width:20px;height:20px;stroke:#fff;fill:none}
+.how-step-title{font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:700;letter-spacing:-0.025em;margin-bottom:0.5rem;color:var(--text)}
+.how-step-body{font-size:0.9rem;color:var(--muted);line-height:1.7}
+.how-step-visual{background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.25rem;box-shadow:0 2px 16px rgba(0,0,0,0.04)}
+.how-mini-row{display:flex;align-items:center;gap:0.625rem;padding:0.625rem 0.75rem;background:var(--off);border-radius:7px;margin-bottom:0.5rem;font-size:0.8125rem;font-weight:500;color:var(--text)}
+.how-mini-row:last-child{margin-bottom:0}
+.how-mini-row svg{width:14px;height:14px;stroke:var(--blue);flex-shrink:0;fill:none}
+.how-mini-badge{margin-left:auto;font-size:0.6875rem;font-weight:600;background:var(--blue);color:#fff;padding:0.2rem 0.5rem;border-radius:4px}
+.how-mini-badge-green{background:#d1fae5;color:#065f46}
+.how-add-section{display:flex;align-items:center;gap:0.5rem;background:var(--blue);color:#fff;border-radius:8px;padding:0.625rem 1rem;font-size:0.8125rem;font-weight:500;width:fit-content}
+.how-add-section svg{width:14px;height:14px;stroke:#fff;fill:none}
+.how-editor{background:var(--off);border-radius:8px;padding:0.875rem;font-size:0.75rem;color:var(--muted)}
+.how-editor-row{display:flex;align-items:center;gap:0.625rem;padding:0.375rem 0;border-bottom:1px solid var(--border)}
+.how-editor-row:last-child{border-bottom:none;background:rgba(37,99,235,0.08);border-radius:5px;padding:0.375rem 0.5rem;margin-top:0.25rem;color:var(--blue);font-weight:500}
+.how-live{background:#111;border-radius:8px;overflow:hidden}
+.how-live-bar{background:#1f2937;padding:0.5rem 0.875rem;display:flex;align-items:center;gap:0.5rem;font-size:0.6875rem;color:#9ca3af}
+.how-live-dot{width:7px;height:7px;background:#34d399;border-radius:50%}
+.how-live-body{padding:0.875rem;display:flex;flex-direction:column;gap:0.375rem}
+.how-live-line{height:8px;background:rgba(255,255,255,0.08);border-radius:3px}
+.how-live-line.blue{background:rgba(37,99,235,0.4);width:60%}
+.how-live-line.short{width:40%}
 
-/* ---- PRICING ---- */
-.pricing{padding:5rem 0;border-top:1px solid var(--border)}
-.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-top:3rem}
-.price-card{background:var(--white);padding:2rem}
-.price-card.featured{background:var(--black);color:var(--white)}
-.price-label{font-size:0.6875rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid);margin-bottom:1rem}
-.price-card.featured .price-label{color:rgba(255,255,255,0.5)}
-.price-name{font-family:'Syne',sans-serif;font-size:1.375rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:0.375rem}
-.price-amount{font-size:0.9375rem;color:#666;margin-bottom:1.75rem}
-.price-card.featured .price-amount{color:rgba(255,255,255,0.6)}
-.price-list{list-style:none;display:flex;flex-direction:column;gap:0.625rem}
-.price-list li{font-size:0.875rem;display:flex;align-items:flex-start;gap:0.625rem;color:#444}
-.price-card.featured .price-list li{color:rgba(255,255,255,0.8)}
-.price-list li::before{content:'✓';font-size:0.75rem;font-weight:700;color:var(--black);margin-top:2px;flex-shrink:0}
-.price-card.featured .price-list li::before{color:var(--white)}
+/* ─── PRICING ─── */
+.pricing{padding:6rem 0;background:#fff;border-top:1px solid var(--border)}
+.pricing-header{text-align:center;margin-bottom:3.5rem}
+.pricing-header p{font-size:1rem;color:var(--muted);margin-top:0.75rem}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.price-card{background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:2rem;position:relative}
+.price-card.featured{background:var(--hero-bg);border-color:rgba(37,99,235,0.4);box-shadow:0 0 0 1px rgba(37,99,235,0.2),0 24px 60px rgba(0,0,0,0.2)}
+.price-card.featured::before{content:'';position:absolute;top:-1px;left:20%;right:20%;height:2px;background:linear-gradient(90deg,transparent,var(--blue),transparent)}
+.price-popular{display:inline-block;font-size:0.6875rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;background:var(--blue);color:#fff;padding:0.25rem 0.75rem;border-radius:999px;margin-bottom:1.25rem}
+.price-label{font-size:0.6875rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
+.price-card.featured .price-label{color:rgba(255,255,255,0.4)}
+.price-name{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;letter-spacing:-0.025em;color:var(--text);margin-bottom:0.375rem}
+.price-card.featured .price-name{color:#fff}
+.price-amount{font-size:0.9375rem;color:var(--muted);margin-bottom:1.75rem}
+.price-card.featured .price-amount{color:rgba(255,255,255,0.5)}
+.price-list{list-style:none;display:flex;flex-direction:column;gap:0.625rem;margin-bottom:2rem}
+.price-list li{display:flex;align-items:flex-start;gap:0.625rem;font-size:0.875rem;color:#374151}
+.price-card.featured .price-list li{color:rgba(255,255,255,0.75)}
+.price-check{width:16px;height:16px;background:var(--blue-dim);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.price-check svg{width:9px;height:9px;stroke:var(--blue);fill:none}
+.price-card.featured .price-check{background:rgba(37,99,235,0.3)}
+.price-card.featured .price-check svg{stroke:#93c5fd}
+.price-cta{display:flex;justify-content:center}
 
-/* ---- FAQ ---- */
-.faq{padding:5rem 0;border-top:1px solid var(--border)}
-.faq-cols{display:grid;grid-template-columns:280px 1fr;gap:4rem;align-items:start}
-.faq-sidebar h3{font-family:'Syne',sans-serif;font-size:1.75rem;font-weight:800;letter-spacing:-0.03em;line-height:1.2;margin-bottom:1rem}
-.faq-sidebar p{font-size:0.9rem;color:#666;line-height:1.7;margin-bottom:1.5rem}
-.faq-sidebar a{font-size:0.875rem;font-weight:500;color:var(--black);text-decoration:underline;text-underline-offset:3px}
-.faq-list{display:flex;flex-direction:column;border-top:1px solid var(--border)}
-.faq-group{font-size:0.6875rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid);padding:1.75rem 0 0.5rem}
+/* ─── FAQ ─── */
+.faq{padding:6rem 0;background:var(--off);border-top:1px solid var(--border)}
+.faq-inner{display:grid;grid-template-columns:300px 1fr;gap:5rem;align-items:start}
+.faq-sidebar{}
+.faq-sidebar h2{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;letter-spacing:-0.035em;line-height:1.2;margin-bottom:1rem;color:var(--text)}
+.faq-sidebar p{font-size:0.9375rem;color:var(--muted);line-height:1.7;margin-bottom:1.5rem}
+.faq-sidebar a{font-size:0.875rem;font-weight:500;color:var(--blue);text-decoration:none;display:flex;align-items:center;gap:0.375rem}
+.faq-sidebar a:hover{text-decoration:underline}
+.faq-list{border-top:1px solid var(--border)}
+.faq-group{font-size:0.6875rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);padding:1.5rem 0 0.5rem}
 .faq-item{border-bottom:1px solid var(--border)}
-.faq-q{font-size:0.9375rem;font-weight:500;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.125rem 0;user-select:none}
-.faq-q::after{content:'+';font-size:1.125rem;font-weight:400;color:var(--mid);flex-shrink:0;transition:transform 0.2s;line-height:1}
-.faq-item.open .faq-q::after{transform:rotate(45deg)}
-.faq-a{font-size:0.9rem;color:#555;line-height:1.75;max-height:0;overflow:hidden;transition:max-height 0.3s ease,padding-bottom 0.3s}
-.faq-item.open .faq-a{max-height:400px;padding-bottom:1.25rem}
+.faq-q{font-size:0.9375rem;font-weight:500;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.125rem 0;color:var(--text);user-select:none}
+.faq-chevron{width:20px;height:20px;background:var(--off);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background 0.15s,transform 0.2s}
+.faq-chevron svg{width:10px;height:10px;stroke:var(--muted);fill:none;transition:stroke 0.15s}
+.faq-item.open .faq-chevron{background:var(--blue);transform:rotate(45deg)}
+.faq-item.open .faq-chevron svg{stroke:#fff}
+.faq-a{font-size:0.9rem;color:var(--muted);line-height:1.75;max-height:0;overflow:hidden;transition:max-height 0.35s ease,padding-bottom 0.35s}
+.faq-item.open .faq-a{max-height:500px;padding-bottom:1.25rem}
+.faq-more{margin-top:1.5rem}
 
-/* ---- CTA BAND ---- */
-.cta-band{background:var(--black);color:var(--white);padding:5rem 0;text-align:center}
-.cta-band h2{font-family:'Syne',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-0.04em;margin-bottom:0.75rem}
-.cta-band p{font-size:1rem;color:rgba(255,255,255,0.55);margin-bottom:2rem}
-.btn-white{display:inline-flex;align-items:center;gap:0.5rem;background:var(--white);color:var(--black);text-decoration:none;font-size:0.9375rem;font-weight:600;padding:0.875rem 1.75rem;border-radius:8px;transition:opacity 0.15s,gap 0.2s}
-.btn-white:hover{opacity:0.9;gap:0.75rem}
+/* ─── CTA BAND ─── */
+.cta-band{background:var(--hero-bg);padding:6rem 0;position:relative;overflow:hidden}
+.cta-band::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(37,99,235,0.2) 0%,transparent 70%);pointer-events:none}
+.cta-inner{position:relative;text-align:center}
+.cta-eyebrow{font-size:0.6875rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--blue-light);margin-bottom:1.25rem}
+.cta-inner h2{font-family:'Syne',sans-serif;font-size:clamp(2rem,4.5vw,3.5rem);font-weight:800;letter-spacing:-0.04em;line-height:1.1;color:#fff;margin-bottom:1rem}
+.cta-inner p{font-size:1rem;color:rgba(255,255,255,0.5);margin-bottom:2.5rem}
 
-/* ---- PROSE / PRIVACY / INSTALL ---- */
-.page-hero{padding:7.5rem 0 3rem;border-bottom:1px solid var(--border);margin-bottom:4rem}
-.page-hero h1{font-family:'Syne',sans-serif;font-size:clamp(2rem,4vw,3.25rem);font-weight:800;letter-spacing:-0.04em;margin-bottom:0.875rem}
-.page-hero p{font-size:1.0625rem;color:#555;max-width:560px;line-height:1.7}
-.prose{max-width:700px;padding-bottom:5rem}
-.prose h2{font-family:'Syne',sans-serif;font-size:1.375rem;font-weight:800;letter-spacing:-0.025em;margin:2.5rem 0 0.75rem}
-.prose h3{font-size:1rem;font-weight:600;margin:1.75rem 0 0.5rem}
-.prose p,.prose li{font-size:0.9375rem;color:#444;line-height:1.8;margin-bottom:0.75rem}
+/* ─── FOOTER ─── */
+.site-footer{background:#040a17;border-top:1px solid rgba(255,255,255,0.06)}
+.footer-main{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;padding:4rem 0 3rem}
+.footer-brand{}
+.footer-logo{display:flex;align-items:center;gap:0.625rem;font-family:'Syne',sans-serif;font-weight:800;font-size:1.125rem;color:#fff;text-decoration:none;cursor:pointer;letter-spacing:-0.02em;margin-bottom:1rem}
+.footer-tagline{font-size:0.875rem;color:rgba(255,255,255,0.4);line-height:1.65;max-width:220px;margin-bottom:1.5rem}
+.footer-built{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.75rem;font-weight:500;color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);padding:0.375rem 0.75rem;border-radius:999px}
+.footer-col-title{font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:1.25rem}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:0.625rem}
+.footer-links a{font-size:0.875rem;color:rgba(255,255,255,0.5);text-decoration:none;cursor:pointer;transition:color 0.15s}
+.footer-links a:hover{color:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.06);padding:1.5rem 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-copy{font-size:0.8125rem;color:rgba(255,255,255,0.25)}
+
+/* ─── SUBPAGE HERO ─── */
+.subpage-hero{background:var(--hero-bg);padding:8rem 0 4rem;border-bottom:1px solid rgba(255,255,255,0.06)}
+.subpage-hero h1{font-family:'Syne',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-0.04em;color:#fff;margin-bottom:0.875rem}
+.subpage-hero p{font-size:1.0625rem;color:rgba(255,255,255,0.55);max-width:560px;line-height:1.7}
+
+/* ─── HOW PAGE PROSE ─── */
+.prose-page{padding:4rem 0 6rem}
+.prose{max-width:720px}
+.prose h2{font-family:'Syne',sans-serif;font-size:1.375rem;font-weight:700;letter-spacing:-0.025em;color:var(--text);margin:2.5rem 0 0.75rem}
+.prose p,.prose li{font-size:0.9375rem;color:#4b5563;line-height:1.8;margin-bottom:0.75rem}
 .prose ul,.prose ol{padding-left:1.5rem;margin-bottom:0.75rem}
-.prose a{color:var(--black)}
-.tip-box{background:var(--light);border:1px solid var(--border);border-radius:8px;padding:1rem 1.25rem;margin:1.5rem 0;font-size:0.875rem;color:#444;line-height:1.65}
-.install-step{display:flex;gap:1rem;align-items:flex-start;padding:1.25rem 1.5rem;border:1px solid var(--border);border-radius:10px;margin:1rem 0;background:var(--white)}
-.install-step-n{width:26px;height:26px;background:var(--black);color:var(--white);border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:0.6875rem;font-weight:700;flex-shrink:0;margin-top:2px}
-.install-step-body strong{display:block;font-weight:600;font-size:0.9375rem;margin-bottom:0.25rem}
-.install-step-body span{font-size:0.875rem;color:#666;line-height:1.65}
+.prose a{color:var(--blue)}
+.tip-box{background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:1rem 1.25rem;margin:1.25rem 0;font-size:0.875rem;color:#1e40af;line-height:1.65}
+.install-step{display:flex;gap:1rem;align-items:flex-start;padding:1.25rem 1.5rem;border:1.5px solid var(--border);border-radius:10px;margin:0.875rem 0;background:#fff}
+.install-n{width:26px;height:26px;background:var(--blue);color:#fff;border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:0.6875rem;font-weight:700;flex-shrink:0;margin-top:2px}
+.install-body strong{display:block;font-weight:600;font-size:0.9375rem;color:var(--text);margin-bottom:0.25rem}
+.install-body span{font-size:0.875rem;color:var(--muted);line-height:1.65}
 
-/* ---- FOOTER ---- */
-.site-footer{border-top:1px solid var(--border)}
-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;padding:2rem 0}
-.footer-logo{font-family:'Syne',sans-serif;font-size:1.125rem;font-weight:800;color:var(--black);text-decoration:none;letter-spacing:-0.02em;cursor:pointer}
-.footer-links{display:flex;gap:1.75rem;list-style:none;flex-wrap:wrap}
-.footer-links a{font-size:0.875rem;color:var(--mid);text-decoration:none;transition:color 0.15s;cursor:pointer}
-.footer-links a:hover{color:var(--black)}
-.footer-copy{font-size:0.8125rem;color:var(--mid)}
+/* ─── FAQ PAGE ─── */
+.faq-page-inner{padding:3rem 0 6rem}
 
-@media(max-width:900px){
-  .hero-inner,.how-grid,.faq-cols{grid-template-columns:1fr}
-  .hero-visual,.how-visual{display:none}
+/* ─── PRIVACY ─── */
+.privacy-inner{padding:3rem 0 6rem;max-width:720px}
+.privacy-inner h2{font-family:'Syne',sans-serif;font-size:1.375rem;font-weight:700;letter-spacing:-0.02em;color:var(--text);margin:2.5rem 0 0.75rem}
+.privacy-inner p,.privacy-inner li{font-size:0.9375rem;color:#4b5563;line-height:1.8;margin-bottom:0.75rem}
+.privacy-inner ul{padding-left:1.5rem}
+.privacy-inner a{color:var(--blue)}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:960px){
+  .hero-inner{grid-template-columns:1fr;gap:3rem}
+  .hero-visual{display:none}
+  .how-step{grid-template-columns:80px 1fr}
+  .how-step-visual{display:none}
   .features-grid{grid-template-columns:1fr 1fr}
   .pricing-grid{grid-template-columns:1fr}
+  .faq-inner{grid-template-columns:1fr;gap:3rem}
+  .footer-main{grid-template-columns:1fr 1fr}
 }
-@media(max-width:600px){
-  nav{padding:1rem 1.25rem}
-  .nav-links{display:none}
+@media(max-width:640px){
+  nav{padding:0 1.25rem}
+  .nav-center{display:none}
   .wrap{padding:0 1.25rem}
+  .hero-inner{padding:7rem 0 4rem}
+  .hero-title{font-size:3rem}
   .features-grid{grid-template-columns:1fr}
-  .hero{padding:7rem 0 4rem}
+  .how-step{grid-template-columns:1fr}
+  .how-step-num{display:none}
+  .footer-main{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;align-items:flex-start}
   .hero-actions{flex-direction:column;align-items:flex-start}
-  .trust-inner{gap:1.25rem;justify-content:flex-start}
+  .trust-inner{gap:1rem;justify-content:flex-start}
 }
 </style>
 </head>
 <body>
 
-<nav>
-  <a class="logo" onclick="nav('home')">SectionDrop</a>
-  <div class="nav-links">
-    <a onclick="nav('how')" data-i18n="nl_how">How it works</a>
-    <a onclick="nav('faq')" data-i18n="nl_faq">FAQ</a>
+<!-- NAV -->
+<nav id="main-nav">
+  <a class="nav-logo" onclick="goPage('home')">
+    <div class="nav-logo-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg></div>
+    SectionDrop
+  </a>
+  <div class="nav-center">
+    <a onclick="goPage('how')" data-i18n="nl_how">How it works</a>
+    <a onclick="goPage('faq')" data-i18n="nl_faq">FAQ</a>
   </div>
   <div class="nav-right">
     <div class="lang-sw">
       <button class="lang-btn active" onclick="setLang('en')" data-lang="en">EN</button>
       <button class="lang-btn" onclick="setLang('nl')" data-lang="nl">NL</button>
     </div>
-    <a href="https://apps.shopify.com/sectiondrop" class="nav-cta" target="_blank" data-i18n="nl_cta">Install app</a>
+    <a href="https://apps.shopify.com/sectiondrop" class="btn-blue" target="_blank" data-i18n="nl_cta">Browse sections</a>
   </div>
 </nav>
 
-<!-- ======== HOME ======== -->
+<!-- ══════════ HOME ══════════ -->
 <div id="page-home" class="page active">
 
+  <!-- HERO -->
   <section class="hero">
-    <div class="wrap">
-      <div class="hero-inner">
-        <div>
-          <div class="hero-label" data-i18n="h_label">For Shopify 2.0 themes</div>
-          <h1 class="hero-title" data-i18n="h_title">Add sections.<br>No developer<br>needed.</h1>
-          <p class="hero-sub" data-i18n="h_sub">Buy professionally designed Liquid sections and install them directly into your Shopify theme editor. One-time payment — yours to keep forever.</p>
-          <div class="hero-actions">
-            <a href="https://apps.shopify.com/sectiondrop" class="btn-black" target="_blank">
-              <span data-i18n="h_cta">Get started free</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-            </a>
-            <a href="https://sectiondrop-2.myshopify.com/" class="btn-outline" target="_blank" data-i18n="h_demo">View demo store</a>
-          </div>
+    <div class="wrap hero-inner">
+      <div class="hero-left">
+        <div class="hero-tag">
+          <span class="hero-tag-dot"></span>
+          <span data-i18n="h_tag">For Shopify 2.0 themes</span>
         </div>
-        <div>
-          <div class="hero-visual">
-            <div class="hero-visual-title" data-i18n="hv_title">Section library</div>
-            <div class="mock-bar">
-              <div class="mock-bar-left">
-                <div class="mock-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg></div>
-                <span class="mock-name">SD Appointment Form</span>
+        <h1 class="hero-title">
+          <span data-i18n="h_t1">Add sections.</span>
+          <span data-i18n="h_t2">No developer</span>
+          <span class="accent" data-i18n="h_t3">needed.</span>
+        </h1>
+        <p class="hero-sub" data-i18n="h_sub">Buy professionally designed Liquid sections and install them directly into your Shopify theme editor. One-time payment — yours to keep forever.</p>
+        <div class="hero-actions">
+          <a href="https://apps.shopify.com/sectiondrop" class="btn-blue" target="_blank">
+            <span data-i18n="h_cta1">Browse sections</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </a>
+          <a onclick="goPage('how')" class="btn-ghost" data-i18n="h_cta2">How it works</a>
+        </div>
+        <div class="hero-built">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          <span data-i18n="h_built">Built for Shopify</span>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-mockup">
+          <div class="mockup-bar"><div class="mockup-dot"></div><div class="mockup-dot"></div><div class="mockup-dot"></div></div>
+          <div class="mockup-title" data-i18n="mock_title">SECTION LIBRARY</div>
+          <div class="mockup-rows">
+            <div class="mockup-row highlight">
+              <div class="mockup-row-left">
+                <div class="mockup-row-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg></div>
+                <span class="mockup-row-name">SD Appointment Form</span>
               </div>
-              <span class="mock-price">€9</span>
+              <div class="mockup-install-btn"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span data-i18n="mock_install">Install</span></div>
             </div>
-            <div class="mock-bar">
-              <div class="mock-bar-left">
-                <div class="mock-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></div>
-                <span class="mock-name">SD Team</span>
+            <div class="mockup-row">
+              <div class="mockup-row-left">
+                <div class="mockup-row-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+                <span class="mockup-row-name">SD Team</span>
               </div>
-              <span class="mock-price">€9</span>
+              <span class="mockup-price">€9</span>
             </div>
-            <div class="mock-bar">
-              <div class="mock-bar-left">
-                <div class="mock-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-                <span class="mock-name">SD Testimonials</span>
+            <div class="mockup-row">
+              <div class="mockup-row-left">
+                <div class="mockup-row-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+                <span class="mockup-row-name">SD Testimonials</span>
               </div>
-              <span class="mock-price">€9</span>
+              <span class="mockup-price">€9</span>
             </div>
-            <div class="mock-bar">
-              <div class="mock-bar-left">
-                <div class="mock-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
-                <span class="mock-name">SD USP Strip</span>
+            <div class="mockup-row">
+              <div class="mockup-row-left">
+                <div class="mockup-row-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></div>
+                <span class="mockup-row-name">SD USP Strip</span>
               </div>
-              <span class="mock-price">€9</span>
+              <span class="mockup-price">€9</span>
             </div>
-            <div class="mock-bar">
-              <div class="mock-bar-left">
-                <div class="mock-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg></div>
-                <span class="mock-name">SD Image & Text</span>
+            <div class="mockup-row">
+              <div class="mockup-row-left">
+                <div class="mockup-row-icon" style="background:#1d4ed8"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M3 9h18"/></svg></div>
+                <span class="mockup-row-name">SD Image & Text</span>
               </div>
-              <span class="mock-badge" data-i18n="free_badge">Free</span>
+              <span class="mockup-free" data-i18n="mock_free">Free</span>
             </div>
           </div>
         </div>
@@ -248,124 +368,125 @@ footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:w
     </div>
   </section>
 
-  <div class="trust-strip">
-    <div class="wrap">
-      <div class="trust-inner">
-        <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="tr1">One-time purchase, yours forever</span></div>
-        <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="tr2">Works with any Shopify 2.0 theme</span></div>
-        <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="tr3">No coding required</span></div>
-        <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="tr4">Try before you buy</span></div>
-        <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="tr5">Lifetime updates</span></div>
-      </div>
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="wrap trust-inner">
+      <div class="trust-item"><div class="trust-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span data-i18n="tr1">Shopify native</span></div>
+      <div class="trust-item"><div class="trust-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span data-i18n="tr2">One-time purchase</span></div>
+      <div class="trust-item"><div class="trust-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span data-i18n="tr3">No coding required</span></div>
+      <div class="trust-item"><div class="trust-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span data-i18n="tr4">Try before you buy</span></div>
+      <div class="trust-item"><div class="trust-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span data-i18n="tr5">Lifetime updates</span></div>
     </div>
   </div>
 
+  <!-- FEATURES -->
   <section class="features">
     <div class="wrap">
+      <div class="features-header">
+        <div class="eyebrow" data-i18n="feat_eyebrow">Why SectionDrop</div>
+        <h2 class="section-title" data-i18n="feat_title">Everything your theme was missing.</h2>
+        <p data-i18n="feat_sub">Professional sections built to work natively with any Shopify 2.0 theme.</p>
+      </div>
       <div class="features-grid">
         <div class="feat">
-          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></div>
+          <div class="feat-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
           <div class="feat-title" data-i18n="f1t">Not a page builder</div>
-          <div class="feat-body" data-i18n="f1b">Sections are installed directly into your Shopify theme. You keep working in the native theme editor — no new interface to learn, no rebuilding your store.</div>
+          <div class="feat-body" data-i18n="f1b">Sections install directly into your Shopify theme. You keep working in the native editor — no new system to learn, no rebuilding your store.</div>
         </div>
         <div class="feat">
-          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
           <div class="feat-title" data-i18n="f2t">Buy once. Own forever.</div>
-          <div class="feat-body" data-i18n="f2b">The Liquid code is written directly into your theme. It belongs to you — no lock-in, no dependency on SectionDrop staying active. Installed sections work forever.</div>
+          <div class="feat-body" data-i18n="f2b">The Liquid code is written directly into your theme. It's yours — no lock-in, no dependency on SectionDrop. Installed sections work indefinitely.</div>
         </div>
         <div class="feat">
-          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+          <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
           <div class="feat-title" data-i18n="f3t">Try before you buy</div>
-          <div class="feat-body" data-i18n="f3b">Preview any section in a private copy of your own theme before purchasing. Your live store is never touched. See exactly how it looks in your design.</div>
+          <div class="feat-body" data-i18n="f3b">Preview any section in a private copy of your own theme. See exactly how it looks in your design before spending anything. Live store untouched.</div>
         </div>
         <div class="feat">
-          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div class="feat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
           <div class="feat-title" data-i18n="f4t">Works in minutes</div>
-          <div class="feat-body" data-i18n="f4b">Select a section, purchase, choose your theme, click install. The section appears in your theme editor immediately, ready to customize — no setup, no developer.</div>
+          <div class="feat-body" data-i18n="f4b">Browse, purchase, select theme, install. The section appears in the Shopify theme editor immediately. No setup, no configuration, no developer.</div>
         </div>
         <div class="feat">
-          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-.18-3.22"/></svg></div>
+          <div class="feat-icon"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-.18-3.22"/></svg></div>
           <div class="feat-title" data-i18n="f5t">Lifetime updates</div>
-          <div class="feat-body" data-i18n="f5b">When a section you own receives an update, you'll see a badge in My Sections. Apply the update with one click — always free for sections you've purchased.</div>
+          <div class="feat-body" data-i18n="f5b">When a section you own receives an update, you see a badge in My Sections. Apply it in one click — always free for purchased sections.</div>
         </div>
         <div class="feat">
-          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+          <div class="feat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
           <div class="feat-title" data-i18n="f6t">Matches your theme</div>
-          <div class="feat-body" data-i18n="f6b">Sections automatically inherit your theme's fonts, colors and color schemes. They look native — as if they were built into your theme from the start.</div>
+          <div class="feat-body" data-i18n="f6b">Sections automatically use your theme's fonts, colors and color schemes. They look like they were built into the theme from day one.</div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- HOW IT WORKS -->
   <section class="how">
     <div class="wrap">
-      <div class="how-grid">
-        <div>
-          <div class="eyebrow" data-i18n="how_eyebrow">How it works</div>
-          <h2 class="section-heading" style="margin-bottom:2.5rem" data-i18n="how_title">From app to theme in minutes.</h2>
-          <div class="how-steps">
-            <div class="how-step">
-              <div class="how-step-num">01</div>
-              <div class="how-step-content">
-                <div class="how-step-title" data-i18n="hs1t">Browse the library</div>
-                <div class="how-step-body" data-i18n="hs1b">Browse 30+ professionally designed sections. Filter by category or market. Each section has a description and preview image.</div>
-              </div>
-            </div>
-            <div class="how-step">
-              <div class="how-step-num">02</div>
-              <div class="how-step-content">
-                <div class="how-step-title" data-i18n="hs2t">Try it in your own theme</div>
-                <div class="how-step-body" data-i18n="hs2b">Click "Try section" to preview in a private copy of your active theme. Takes 20–40 seconds. Your live store is never affected.</div>
-              </div>
-            </div>
-            <div class="how-step">
-              <div class="how-step-num">03</div>
-              <div class="how-step-content">
-                <div class="how-step-title" data-i18n="hs3t">Purchase once</div>
-                <div class="how-step-body" data-i18n="hs3b">Pay €9 — one time. The section is yours permanently. All payments go through Shopify's billing system.</div>
-              </div>
-            </div>
-            <div class="how-step">
-              <div class="how-step-num">04</div>
-              <div class="how-step-content">
-                <div class="how-step-title" data-i18n="hs4t">Install & customize</div>
-                <div class="how-step-body" data-i18n="hs4b">Select your theme, click Install. Open the Shopify theme editor and add the section to any page. Customize everything — no code required.</div>
-              </div>
-            </div>
+      <div class="how-header">
+        <div class="eyebrow" data-i18n="how_eyebrow">How it works</div>
+        <h2 class="section-title" data-i18n="how_title">From the app to your theme in minutes.</h2>
+      </div>
+      <div class="how-steps">
+        <div class="how-step">
+          <div class="how-step-num">01</div>
+          <div class="how-step-content">
+            <div class="how-step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></div>
+            <div class="how-step-title" data-i18n="hw1t">Browse the library</div>
+            <div class="how-step-body" data-i18n="hw1b">Browse 30+ professionally designed sections. Filter by category — Forms, Content, Conversion — or by market. English and Dutch sections available.</div>
           </div>
-          <div style="margin-top:2rem">
-            <a onclick="nav('how')" class="btn-outline" data-i18n="how_more">Read the full install guide →</a>
+          <div class="how-step-visual">
+            <div class="how-mini-row"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg>SD Appointment Form<span class="how-mini-badge">€9</span></div>
+            <div class="how-mini-row"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>SD Team<span class="how-mini-badge">€9</span></div>
+            <div class="how-mini-row" style="border-radius:7px;background:#f0fdf4"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M3 9h18"/></svg>SD Image & Text<span class="how-mini-badge how-mini-badge-green" data-i18n="mock_free">Free</span></div>
           </div>
         </div>
-        <div>
-          <div class="how-visual">
-            <div style="font-size:0.6875rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--mid);margin-bottom:1rem" data-i18n="hv2_title">Installation flow</div>
-            <div class="how-visual-inner">
-              <div class="how-row active-row">
-                <div class="how-row-num">1</div>
-                <div class="how-row-label" data-i18n="hr1">Browse Library</div>
-                <div class="how-row-sub" data-i18n="hr1s">30+ sections</div>
-              </div>
-              <div class="how-row">
-                <div class="how-row-num">2</div>
-                <div class="how-row-label" data-i18n="hr2">Try in your theme</div>
-                <div class="how-row-sub" data-i18n="hr2s">20–40 sec</div>
-              </div>
-              <div class="how-row">
-                <div class="how-row-num">3</div>
-                <div class="how-row-label" data-i18n="hr3">Purchase</div>
-                <div class="how-row-sub">€9</div>
-              </div>
-              <div class="how-row">
-                <div class="how-row-num">4</div>
-                <div class="how-row-label" data-i18n="hr4">Install in theme</div>
-                <div class="how-row-sub" data-i18n="hr4s">1 click</div>
-              </div>
-              <div class="how-row">
-                <div class="how-row-num">5</div>
-                <div class="how-row-label" data-i18n="hr5">Customize in editor</div>
-                <div class="how-row-sub" data-i18n="hr5s">No code</div>
-              </div>
+        <div class="how-step">
+          <div class="how-step-num">02</div>
+          <div class="how-step-content">
+            <div class="how-step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div class="how-step-title" data-i18n="hw2t">Try in your own theme</div>
+            <div class="how-step-body" data-i18n="hw2b">Click "Try section" to preview in a private copy of your active theme. Takes 20–40 seconds. Your live store is never affected.</div>
+          </div>
+          <div class="how-step-visual">
+            <div style="font-size:0.75rem;font-weight:600;color:var(--muted);margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.08em" data-i18n="hw2vis">Private preview</div>
+            <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:0.75rem;font-size:0.8125rem;color:#166534;display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span data-i18n="hw2vis2">Live store untouched</span>
+            </div>
+            <div style="font-size:0.8125rem;color:var(--muted)" data-i18n="hw2vis3">Preview theme: private &amp; unpublished</div>
+          </div>
+        </div>
+        <div class="how-step">
+          <div class="how-step-num">03</div>
+          <div class="how-step-content">
+            <div class="how-step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+            <div class="how-step-title" data-i18n="hw3t">Purchase once</div>
+            <div class="how-step-body" data-i18n="hw3b">Pay €9 — one time. Yours permanently. All payments go through Shopify's billing system and appear in your Shopify billing overview.</div>
+          </div>
+          <div class="how-step-visual">
+            <div style="font-size:0.8125rem;font-weight:500;color:var(--muted);margin-bottom:0.625rem" data-i18n="hw3vis">Payment via Shopify</div>
+            <div style="background:var(--blue);border-radius:8px;padding:0.875rem;color:#fff;font-size:0.875rem;font-weight:500;display:flex;justify-content:space-between;align-items:center">
+              <span data-i18n="hw3vis2">SD Appointment Form</span><span>€9</span>
+            </div>
+            <div style="font-size:0.75rem;color:var(--muted);margin-top:0.625rem;text-align:center" data-i18n="hw3vis3">No recurring fees. Own it forever.</div>
+          </div>
+        </div>
+        <div class="how-step">
+          <div class="how-step-num">04</div>
+          <div class="how-step-content">
+            <div class="how-step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+            <div class="how-step-title" data-i18n="hw4t">Install &amp; customize</div>
+            <div class="how-step-body" data-i18n="hw4b">Select your theme, click Install. Open the Shopify theme editor, add the section to any page, customize everything. No code required.</div>
+          </div>
+          <div class="how-step-visual">
+            <div class="how-add-section"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg><span data-i18n="hw4vis">Add section</span></div>
+            <div class="how-editor" style="margin-top:0.75rem">
+              <div class="how-editor-row"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>Header</div>
+              <div class="how-editor-row"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>Hero</div>
+              <div class="how-editor-row"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg><span data-i18n="hw4vis2">SD Appointment Form</span></div>
             </div>
           </div>
         </div>
@@ -373,160 +494,205 @@ footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:w
     </div>
   </section>
 
+  <!-- PRICING -->
   <section class="pricing">
     <div class="wrap">
-      <div class="eyebrow" data-i18n="pr_eyebrow">Pricing</div>
-      <h2 class="section-heading" data-i18n="pr_title">Simple pricing. No surprises.</h2>
+      <div class="pricing-header">
+        <div class="eyebrow" data-i18n="pr_eyebrow">Pricing</div>
+        <h2 class="section-title" data-i18n="pr_title">Simple pricing. No surprises.</h2>
+        <p data-i18n="pr_sub">All prices in EUR. No recurring fees for individual sections.</p>
+      </div>
       <div class="pricing-grid">
         <div class="price-card">
           <div class="price-label" data-i18n="pc1l">Free</div>
-          <div class="price-name" data-i18n="pc1n">Browse & Try</div>
+          <div class="price-name" data-i18n="pc1n">Browse &amp; Try</div>
           <div class="price-amount" data-i18n="pc1p">Free to install</div>
           <ul class="price-list">
-            <li data-i18n="pc1f1">Full section library access</li>
-            <li data-i18n="pc1f2">Try any section in your own theme</li>
-            <li data-i18n="pc1f3">Private preview, live store untouched</li>
+            <li><div class="price-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span data-i18n="pc1f1">Full section library access</span></li>
+            <li><div class="price-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span data-i18n="pc1f2">Try any section in your own theme</span></li>
+            <li><div class="price-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span data-i18n="pc1f3">Private preview, live store untouched</span></li>
           </ul>
+          <div class="price-cta"><a href="https://apps.shopify.com/sectiondrop" class="btn-outline-dark" target="_blank" data-i18n="pc1cta">Get started</a></div>
         </div>
         <div class="price-card featured">
-          <div class="price-label" data-i18n="pc2l">Most popular</div>
-          <div class="price-name" data-i18n="pc2n">Pay per section</div>
+          <div class="price-popular" data-i18n="pc2pop">Most popular</div>
+          <div class="price-label" data-i18n="pc2l">Pay per section</div>
+          <div class="price-name" data-i18n="pc2n">Individual</div>
           <div class="price-amount" data-i18n="pc2p">€9 per section, one-time</div>
           <ul class="price-list">
-            <li data-i18n="pc2f1">Buy only what you need</li>
-            <li data-i18n="pc2f2">You own the code — forever</li>
-            <li data-i18n="pc2f3">Lifetime updates included</li>
-            <li data-i18n="pc2f4">Reinstall in unlimited themes</li>
+            <li><div class="price-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span data-i18n="pc2f1">Buy only what you need</span></li>
+            <li><div class="price-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span data-i18n="pc2f2">You own the code — forever</span></li>
+            <li><div class="price-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span data-i18n="pc2f3">Lifetime updates included</span></li>
+            <li><div class="price-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span data-i18n="pc2f4">Reinstall in unlimited themes</span></li>
           </ul>
+          <div class="price-cta"><a href="https://apps.shopify.com/sectiondrop" class="btn-blue" target="_blank" data-i18n="pc2cta">Browse sections</a></div>
         </div>
         <div class="price-card">
           <div class="price-label" data-i18n="pc3l">Pro</div>
           <div class="price-name" data-i18n="pc3n">SectionDrop Pro</div>
           <div class="price-amount" data-i18n="pc3p">€16.99/mo or €169.90/yr</div>
           <ul class="price-list">
-            <li data-i18n="pc3f1">Unlimited access to all sections</li>
-            <li data-i18n="pc3f2">New sections added automatically</li>
-            <li data-i18n="pc3f3">Lifetime updates on everything</li>
-            <li data-i18n="pc3f4">Cancel anytime, sections stay</li>
+            <li><div class="price-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span data-i18n="pc3f1">Unlimited access to all sections</span></li>
+            <li><div class="price-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span data-i18n="pc3f2">New sections added automatically</span></li>
+            <li><div class="price-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span data-i18n="pc3f3">Lifetime updates on everything</span></li>
+            <li><div class="price-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span data-i18n="pc3f4">Cancel anytime — sections stay</span></li>
           </ul>
+          <div class="price-cta"><a href="https://apps.shopify.com/sectiondrop" class="btn-outline-dark" target="_blank" data-i18n="pc3cta">Start Pro</a></div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- FAQ (preview) -->
   <section class="faq">
     <div class="wrap">
-      <div class="faq-cols">
+      <div class="faq-inner">
         <div class="faq-sidebar">
-          <h3 data-i18n="fq_h">Common questions</h3>
-          <p data-i18n="fq_p">Can't find your answer? We respond within 1 business day.</p>
-          <a href="mailto:hallo@ecomstudionimma.nl">hallo@ecomstudionimma.nl</a>
+          <div class="eyebrow" data-i18n="faq_eyebrow">Questions?</div>
+          <h2 data-i18n="faq_h">We've got answers.</h2>
+          <p data-i18n="faq_p">Can't find what you're looking for? Feel free to contact us.</p>
+          <a href="mailto:hallo@ecomstudionimma.nl">hallo@ecomstudionimma.nl <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></a>
         </div>
-        <div class="faq-list">
-          <div class="faq-item">
-            <div class="faq-q" data-i18n="fq1q">Does SectionDrop work with my theme?</div>
-            <div class="faq-a" data-i18n="fq1a">SectionDrop works with all Shopify 2.0 themes — Dawn, Horizon, Refresh, Craft, Sense, and any other 2.0 theme. Sections automatically inherit your theme's fonts and colors. Vintage/legacy themes (pre-2.0) are not supported.</div>
+        <div>
+          <div class="faq-list">
+            <div class="faq-item">
+              <div class="faq-q"><span data-i18n="fq1q">Does SectionDrop work with my theme?</span><div class="faq-chevron"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div>
+              <div class="faq-a" data-i18n="fq1a">SectionDrop works with all Shopify 2.0 themes — Dawn, Horizon, Refresh, Craft, Sense and any other 2.0 theme. Sections automatically use your theme's fonts and colors. Vintage/legacy themes (pre-2.0) are not supported.</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q"><span data-i18n="fq2q">Do I need to know how to code?</span><div class="faq-chevron"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div>
+              <div class="faq-a" data-i18n="fq2a">No. Sections are installed with one click. All customization happens in the Shopify theme editor — colors, fonts, spacing, labels and content. No code at any point.</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q"><span data-i18n="fq3q">What does "one-time purchase" mean?</span><div class="faq-chevron"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div>
+              <div class="faq-a" data-i18n="fq3a">You pay once and the Liquid code is written directly into your theme. You own that code — even if you uninstall SectionDrop, your sections keep working perfectly.</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q"><span data-i18n="fq4q">Will my live store be affected during preview?</span><div class="faq-chevron"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div>
+              <div class="faq-a" data-i18n="fq4a">No. The preview creates a private, unpublished copy of your theme. Your live store is completely unchanged. Nothing is installed in your actual theme until you purchase and explicitly choose to install.</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q"><span data-i18n="fq5q">Can I install a section in multiple themes?</span><div class="faq-chevron"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div>
+              <div class="faq-a" data-i18n="fq5a">Yes. Once purchased, reinstall in as many themes as you want — development themes, backup themes, a new live theme. No limit, no extra cost.</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q"><span data-i18n="fq6q">What happens to my sections if I cancel Pro?</span><div class="faq-chevron"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div>
+              <div class="faq-a" data-i18n="fq6a">Nothing. Installed sections keep working exactly as before. Cancelling Pro only means you can no longer install new sections without purchasing them individually.</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q"><span data-i18n="fq7q">Are sections available in Dutch?</span><div class="faq-chevron"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div>
+              <div class="faq-a" data-i18n="fq7a">Most sections use English default text, which is fully editable in the theme editor. Some sections are specifically made for the Dutch market with Dutch defaults. Filter by market in the app.</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q"><span data-i18n="fq8q">Are updates free?</span><div class="faq-chevron"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div>
+              <div class="faq-a" data-i18n="fq8a">Yes. Updates are always free for sections you have purchased. When an update is available, a badge appears in My Sections. Apply it with one click.</div>
+            </div>
           </div>
-          <div class="faq-item">
-            <div class="faq-q" data-i18n="fq2q">Do I need to know how to code?</div>
-            <div class="faq-a" data-i18n="fq2a">No. Sections are installed with one click. All customization happens in the Shopify theme editor — colors, fonts, spacing, labels and content. No code at any point.</div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-q" data-i18n="fq3q">What does "one-time purchase" mean exactly?</div>
-            <div class="faq-a" data-i18n="fq3a">You pay once and the Liquid code is written directly into your theme. You own that code. It works independently of SectionDrop — even if you uninstall the app, your sections keep working.</div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-q" data-i18n="fq4q">Can I install a section in multiple themes?</div>
-            <div class="faq-a" data-i18n="fq4a">Yes. Once purchased, you can reinstall any section in as many themes as you want — development themes, backup themes, a new live theme. No limit, no extra cost.</div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-q" data-i18n="fq5q">Will my live store be affected during the preview?</div>
-            <div class="faq-a" data-i18n="fq5a">No. The preview creates a private, unpublished copy of your theme. Your live store is completely unchanged. Nothing is installed in your actual theme until you purchase and explicitly choose to install.</div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-q" data-i18n="fq6q">What happens to my sections if I cancel Pro?</div>
-            <div class="faq-a" data-i18n="fq6a">Nothing. Sections already installed in your theme continue working exactly as before. Cancelling Pro only means you can no longer install new sections without purchasing them individually.</div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-q" data-i18n="fq7q">Are sections available in Dutch?</div>
-            <div class="faq-a" data-i18n="fq7a">Most sections use English default text, which you can fully edit in the theme editor. Some sections are specifically made for the Dutch market with Dutch defaults. You can filter the library by market in the app. More language-specific sections are added regularly.</div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-q" data-i18n="fq8q">Are updates free?</div>
-            <div class="faq-a" data-i18n="fq8a">Yes. When a section you own receives an update, an "Update available" badge appears in My Sections. Apply it with one click. Updates are always free for sections you have purchased.</div>
+          <div class="faq-more">
+            <a onclick="goPage('faq')" class="btn-outline-dark" data-i18n="faq_more">View all FAQ →</a>
           </div>
         </div>
-      </div>
-      <div style="text-align:center;margin-top:3rem">
-        <a onclick="nav('faq')" class="btn-outline" data-i18n="fq_all">View all FAQ →</a>
       </div>
     </div>
   </section>
 
+  <!-- CTA BAND -->
   <div class="cta-band">
-    <div class="wrap">
-      <h2 data-i18n="cta_h">Your theme. Better sections.</h2>
-      <p data-i18n="cta_p">Free to install. Buy only what you need.</p>
-      <a href="https://apps.shopify.com/sectiondrop" class="btn-white" target="_blank">
-        <span data-i18n="cta_btn">Install SectionDrop free</span>
+    <div class="wrap cta-inner">
+      <div class="cta-eyebrow" data-i18n="cta_eyebrow">READY TO UPGRADE YOUR STORE?</div>
+      <h2 data-i18n="cta_h">Add premium sections.<br>No developer needed.</h2>
+      <p data-i18n="cta_p">Free to install. Buy only what you need. Own it forever.</p>
+      <a href="https://apps.shopify.com/sectiondrop" class="btn-blue" target="_blank">
+        <span data-i18n="cta_btn">Browse sections</span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
       </a>
     </div>
   </div>
+
+  <!-- FOOTER -->
+  <div class="site-footer">
+    <div class="wrap">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <div class="footer-logo" onclick="goPage('home')">
+            <div class="nav-logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg></div>
+            SectionDrop
+          </div>
+          <p class="footer-tagline" data-i18n="ft_tagline">Professional Liquid sections for Shopify. Buy once, use forever. No coding required.</p>
+          <div class="footer-built" data-i18n="ft_built">✦ Built for Shopify</div>
+        </div>
+        <div>
+          <div class="footer-col-title" data-i18n="ft_product">Product</div>
+          <ul class="footer-links">
+            <li><a href="https://apps.shopify.com/sectiondrop" target="_blank" data-i18n="ft_browse">Browse sections</a></li>
+            <li><a onclick="goPage('how')" data-i18n="nl_how">How it works</a></li>
+            <li><a href="https://apps.shopify.com/sectiondrop" target="_blank" data-i18n="ft_pricing">Pricing</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title" data-i18n="ft_help">Help</div>
+          <ul class="footer-links">
+            <li><a onclick="goPage('faq')" data-i18n="nl_faq">FAQ</a></li>
+            <li><a onclick="goPage('how')" data-i18n="ft_install">Installation guide</a></li>
+            <li><a href="mailto:hallo@ecomstudionimma.nl" data-i18n="nl_contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title" data-i18n="ft_company">Company</div>
+          <ul class="footer-links">
+            <li><a href="mailto:hallo@ecomstudionimma.nl" data-i18n="ft_about">About us</a></li>
+            <li><a onclick="goPage('privacy')" data-i18n="nl_priv">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy" data-i18n="ft_copy">© 2026 Ecom Studio Nimma. All rights reserved.</span>
+        <div class="lang-sw">
+          <button class="lang-btn active" onclick="setLang('en')" data-lang="en">EN</button>
+          <button class="lang-btn" onclick="setLang('nl')" data-lang="nl">NL</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<!-- ======== HOW IT WORKS ======== -->
+<!-- ══════════ HOW IT WORKS PAGE ══════════ -->
 <div id="page-how" class="page">
-  <div class="wrap">
-    <div class="page-hero">
-      <div class="eyebrow" data-i18n="how_pg_label">Installation guide</div>
+  <div class="subpage-hero">
+    <div class="wrap">
+      <div class="eyebrow eyebrow-dark" data-i18n="how_pg_label">Installation guide</div>
       <h1 data-i18n="how_pg_h">How to install a section</h1>
       <p data-i18n="how_pg_p">From browsing to live on your store — step by step.</p>
     </div>
+  </div>
+  <div class="wrap prose-page">
     <div class="prose">
-      <h2 data-i18n="hw1">Step 1 — Install SectionDrop</h2>
-      <p data-i18n="hw1p">Go to the Shopify App Store and install SectionDrop. The app is free to install. After installing, a short onboarding guides you through the basics — about one minute.</p>
+      <h2 data-i18n="hw1h">Step 1 — Install SectionDrop</h2>
+      <p data-i18n="hw1p">Go to the Shopify App Store and install SectionDrop. Free to install. A short onboarding takes about one minute.</p>
       <div class="tip-box" data-i18n="hw1tip">SectionDrop requires a Shopify 2.0 theme. Vintage/legacy themes are not supported.</div>
-
-      <h2 data-i18n="hw2">Step 2 — Browse the library</h2>
-      <p data-i18n="hw2p">Open the Library in the app. Filter by category (Forms, Content, Conversion) or by market (International, Nederland). Click any section to see the full description and preview image.</p>
-
-      <h2 data-i18n="hw3">Step 3 — Try before you buy</h2>
-      <p data-i18n="hw3p">On the section detail page, click "Try section". SectionDrop creates a private copy of your active theme and installs the section there. This takes 20–40 seconds.</p>
-      <div class="tip-box" data-i18n="hw3tip">Your live store is never affected. The preview theme is a private, unpublished copy that cannot be published by anyone.</div>
-      <p data-i18n="hw3p2">When the preview is ready, click "Open preview editor". The Shopify theme editor opens with the section already installed. Add it to any page and customize it to see exactly how it looks.</p>
-
-      <h2 data-i18n="hw4">Step 4 — Purchase</h2>
-      <p data-i18n="hw4p">Click "Buy for €9" on the section detail page. You are redirected to Shopify's payment flow. After approval, you return to SectionDrop automatically.</p>
-      <div class="tip-box" data-i18n="hw4tip">All payments go through Shopify's billing system and appear in your Shopify billing overview.</div>
-
-      <h2 data-i18n="hw5">Step 5 — Install in your theme</h2>
-      <p data-i18n="hw5p">After purchase you land on the install page. Select the theme you want to install the section in and click "Install". Done.</p>
-      <div class="install-step">
-        <div class="install-step-n">1</div>
-        <div class="install-step-body"><strong data-i18n="is1t">Select your theme</strong><span data-i18n="is1b">Choose any installed theme from the dropdown — your live theme, a development copy, whatever you need.</span></div>
-      </div>
-      <div class="install-step">
-        <div class="install-step-n">2</div>
-        <div class="install-step-body"><strong data-i18n="is2t">Click Install</strong><span data-i18n="is2b">The section's Liquid file is written directly to your theme. No code changes needed on your end.</span></div>
-      </div>
-      <div class="install-step">
-        <div class="install-step-n">3</div>
-        <div class="install-step-body"><strong data-i18n="is3t">Open the theme editor</strong><span data-i18n="is3b">Shopify admin → Online Store → Themes → Customize. The section is now available under "Add section".</span></div>
-      </div>
-
-      <h2 data-i18n="hw6">Step 6 — Customize</h2>
-      <p data-i18n="hw6p">In the theme editor sidebar, click "Add section" and search for the section name. Add it to any page. All settings — colors, fonts, spacing, labels, content — are adjustable in the editor. No code required.</p>
-      <div class="tip-box" data-i18n="hw6tip">Sections automatically match your theme's color scheme and typography. No manual matching needed.</div>
-
-      <h2 data-i18n="hw7">Reinstalling in a different theme</h2>
-      <p data-i18n="hw7p">Go to My Sections → find the section → click "Install" → select a different theme. You can do this as many times as you need. There is no limit on the number of themes.</p>
-
-      <h2 data-i18n="hw8">Applying updates</h2>
-      <p data-i18n="hw8p">When a section receives an update, a badge appears in My Sections. Click "Update & reinstall" to apply it to your chosen theme. Updates are always free.</p>
-
+      <h2 data-i18n="hw2h">Step 2 — Browse the library</h2>
+      <p data-i18n="hw2p">Open the Library in the app. Filter by category (Forms, Content, Conversion) or by market (International, Nederland). Click any section for the full description and preview image.</p>
+      <h2 data-i18n="hw3h">Step 3 — Try before you buy</h2>
+      <p data-i18n="hw3p">Click "Try section" on the detail page. SectionDrop creates a private copy of your active theme and installs the section there — 20–40 seconds.</p>
+      <div class="tip-box" data-i18n="hw3tip">Your live store is never affected. The preview theme is private and unpublished. It cannot be published by anyone.</div>
+      <p data-i18n="hw3p2">When ready, click "Open preview editor" to see the section in the Shopify theme editor with your own theme's design.</p>
+      <h2 data-i18n="hw4h">Step 4 — Purchase</h2>
+      <p data-i18n="hw4p">Click "Buy for €9". Redirected to Shopify's payment flow. Returns to SectionDrop automatically after approval.</p>
+      <div class="tip-box" data-i18n="hw4tip">All payments go through Shopify billing and appear in your Shopify billing overview.</div>
+      <h2 data-i18n="hw5h">Step 5 — Install in your theme</h2>
+      <p data-i18n="hw5p">On the install page, select your theme and click Install.</p>
+      <div class="install-step"><div class="install-n">1</div><div class="install-body"><strong data-i18n="is1t">Select your theme</strong><span data-i18n="is1b">Choose any installed theme — live, development, or backup.</span></div></div>
+      <div class="install-step"><div class="install-n">2</div><div class="install-body"><strong data-i18n="is2t">Click Install</strong><span data-i18n="is2b">The section's Liquid file is written directly to your theme.</span></div></div>
+      <div class="install-step"><div class="install-n">3</div><div class="install-body"><strong data-i18n="is3t">Open the theme editor</strong><span data-i18n="is3b">Admin → Online Store → Themes → Customize. The section is available under "Add section".</span></div></div>
+      <h2 data-i18n="hw6h">Step 6 — Customize</h2>
+      <p data-i18n="hw6p">In the theme editor, click "Add section", search for the section name, add it to any page. Customize everything — colors, fonts, spacing, content — no code required.</p>
+      <div class="tip-box" data-i18n="hw6tip">Sections automatically match your theme's colors and typography.</div>
+      <h2 data-i18n="hw7h">Reinstalling in a different theme</h2>
+      <p data-i18n="hw7p">My Sections → find the section → Install → select a different theme. No limit on number of themes.</p>
+      <h2 data-i18n="hw8h">Applying updates</h2>
+      <p data-i18n="hw8p">When an update is available, a badge appears in My Sections. Click "Update & reinstall". Always free for purchased sections.</p>
       <div style="margin-top:2.5rem">
-        <a href="https://apps.shopify.com/sectiondrop" class="btn-black" target="_blank">
+        <a href="https://apps.shopify.com/sectiondrop" class="btn-blue" target="_blank">
           <span data-i18n="hw_cta">Install SectionDrop and get started</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
         </a>
@@ -535,284 +701,142 @@ footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:w
   </div>
 </div>
 
-<!-- ======== FAQ ======== -->
+<!-- ══════════ FAQ PAGE ══════════ -->
 <div id="page-faq" class="page">
-  <div class="wrap">
-    <div class="page-hero">
-      <div class="eyebrow">FAQ</div>
+  <div class="subpage-hero">
+    <div class="wrap">
+      <div class="eyebrow eyebrow-dark">FAQ</div>
       <h1 data-i18n="faq_pg_h">Frequently asked questions</h1>
-      <p data-i18n="faq_pg_p">Can't find your answer? Email <a href="mailto:hallo@ecomstudionimma.nl">hallo@ecomstudionimma.nl</a> — we respond within 1 business day.</p>
+      <p data-i18n="faq_pg_p">Can't find your answer? Email <a href="mailto:hallo@ecomstudionimma.nl" style="color:#93c5fd">hallo@ecomstudionimma.nl</a> — we respond within 1 business day.</p>
     </div>
-    <div class="prose" style="max-width:100%">
-      <div class="faq-list">
-        <div class="faq-group" data-i18n="fg1">Getting started</div>
-        <div class="faq-item"><div class="faq-q" data-i18n="fq1q">Does SectionDrop work with my theme?</div><div class="faq-a" data-i18n="fq1a">SectionDrop works with all Shopify 2.0 themes — Dawn, Horizon, Refresh, Craft, Sense, and any other 2.0 theme. Sections automatically inherit your theme's fonts and colors. Vintage/legacy themes (pre-2.0) are not supported.</div></div>
-        <div class="faq-item"><div class="faq-q" data-i18n="fq2q">Do I need to know how to code?</div><div class="faq-a" data-i18n="fq2a">No. Sections are installed with one click. All customization happens in the Shopify theme editor — colors, fonts, spacing, labels and content. No code at any point.</div></div>
-        <div class="faq-item"><div class="faq-q" data-i18n="fq3qx">How do I install SectionDrop?</div><div class="faq-a" data-i18n="fq3ax">Go to the Shopify App Store, search for SectionDrop and click Install. The app is free to install. A short onboarding takes about one minute. You only pay when you purchase individual sections.</div></div>
-        <div class="faq-item"><div class="faq-q" data-i18n="fq4qx">Are sections available in Dutch?</div><div class="faq-a" data-i18n="fq4ax">Most sections use English default text, which is fully editable in the theme editor. Some sections are made specifically for the Dutch market with Dutch defaults. Filter by market in the app. More language-specific sections are added regularly.</div></div>
-
-        <div class="faq-group" data-i18n="fg2">Purchasing & ownership</div>
-        <div class="faq-item"><div class="faq-q" data-i18n="fq5qx">How much does a section cost?</div><div class="faq-a" data-i18n="fq5ax">€9 per section, one-time. No recurring fees for individual sections. Pro is available at €16.99/month or €169.90/year for unlimited access to all sections.</div></div>
-        <div class="faq-item"><div class="faq-q" data-i18n="fq3q">What does "one-time purchase" mean exactly?</div><div class="faq-a" data-i18n="fq3a">You pay once and the Liquid code is written directly into your theme. You own that code. It works independently of SectionDrop — even if you uninstall the app, your sections keep working.</div></div>
-        <div class="faq-item"><div class="faq-q" data-i18n="fq4q">Can I install a section in multiple themes?</div><div class="faq-a" data-i18n="fq4a">Yes. Once purchased, you can reinstall any section in as many themes as you want — development themes, backup themes, a new live theme. No limit, no extra cost.</div></div>
-        <div class="faq-item"><div class="faq-q" data-i18n="fq8q">Are updates free?</div><div class="faq-a" data-i18n="fq8a">Yes. When a section you own receives an update, an "Update available" badge appears in My Sections. Apply it with one click. Updates are always free.</div></div>
-
-        <div class="faq-group" data-i18n="fg3">Try Before You Buy</div>
-        <div class="faq-item"><div class="faq-q" data-i18n="fq9q">How does Try Before You Buy work?</div><div class="faq-a" data-i18n="fq9a">Click "Try section" on any section. SectionDrop creates a private copy of your active theme and installs the section in it. This takes 20–40 seconds. You get a link to the Shopify theme editor for that private theme where you can preview and customize freely. Your live store is never affected.</div></div>
-        <div class="faq-item"><div class="faq-q" data-i18n="fq5q">Will my live store be affected during the preview?</div><div class="faq-a" data-i18n="fq5a">No. The preview uses a private, unpublished copy of your theme. Your live store is completely unchanged. Nothing is installed in your actual theme until you purchase and explicitly choose to install.</div></div>
-        <div class="faq-item"><div class="faq-q" data-i18n="fq10q">Why does the preview take 20–40 seconds?</div><div class="faq-a" data-i18n="fq10a">Creating a preview requires duplicating your entire theme — all template files, assets and settings. Shopify processes this in the background and we wait for it to complete. We cannot speed this up — it depends on your theme's size and Shopify's processing time.</div></div>
-
-        <div class="faq-group" data-i18n="fg4">Pro plan</div>
-        <div class="faq-item"><div class="faq-q" data-i18n="fq11q">What is included in Pro?</div><div class="faq-a" data-i18n="fq11a">Pro gives you unlimited access to all current and future sections. Instead of paying €9 per section, you install any section directly. New sections are included automatically. Available at €16.99/month or €169.90/year (2 months free).</div></div>
-        <div class="faq-item"><div class="faq-q" data-i18n="fq6q">What happens to my sections if I cancel Pro?</div><div class="faq-a" data-i18n="fq6a">Nothing. Sections already installed continue working exactly as before. Cancelling Pro means you can no longer install new sections without purchasing them individually.</div></div>
-        <div class="faq-item"><div class="faq-q" data-i18n="fq12q">Can I switch between monthly and yearly?</div><div class="faq-a" data-i18n="fq12a">Yes, from the Pro page in the app at any time. The change takes effect at the start of your next billing period.</div></div>
-
-        <div class="faq-group" data-i18n="fg5">Support</div>
-        <div class="faq-item"><div class="faq-q" data-i18n="fq13q">How do I get support?</div><div class="faq-a" data-i18n="fq13a">Email hallo@ecomstudionimma.nl. We respond within 1 business day.</div></div>
-        <div class="faq-item"><div class="faq-q" data-i18n="fq14q">A section is not displaying correctly. What should I do?</div><div class="faq-a" data-i18n="fq14a">Check that your theme is Shopify 2.0. Make sure the section is installed (My Sections → reinstall). Confirm the section is added to your page template in the theme editor. If the issue persists, email us with your store URL and section name — we'll investigate within 1 business day.</div></div>
-      </div>
+  </div>
+  <div class="wrap faq-page-inner">
+    <div class="faq-list" style="border-top:1px solid var(--border);max-width:760px">
+      <div class="faq-group" data-i18n="fg1">Getting started</div>
+      <div class="faq-item"><div class="faq-q"><span data-i18n="fq1q">Does SectionDrop work with my theme?</span><div class="faq-chevron"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-a" data-i18n="fq1a">SectionDrop works with all Shopify 2.0 themes — Dawn, Horizon, Refresh, Craft, Sense and any other 2.0 theme. Sections automatically use your theme's fonts and colors. Vintage/legacy themes (pre-2.0) are not supported.</div></div>
+      <div class="faq-item"><div class="faq-q"><span data-i18n="fq2q">Do I need to know how to code?</span><div class="faq-chevron"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-a" data-i18n="fq2a">No. Sections are installed with one click. All customization happens in the Shopify theme editor — colors, fonts, spacing, labels and content. No code at any point.</div></div>
+      <div class="faq-item"><div class="faq-q"><span data-i18n="fqhow">How do I install SectionDrop?</span><div class="faq-chevron"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-a" data-i18n="fahow">Go to the Shopify App Store, search for SectionDrop and click Install. Free to install — you only pay when you purchase individual sections.</div></div>
+      <div class="faq-item"><div class="faq-q"><span data-i18n="fqdutch">Are sections available in Dutch?</span><div class="faq-chevron"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-a" data-i18n="fadutch">Most sections use English default text, fully editable in the theme editor. Some sections are made for the Dutch market with Dutch defaults. Filter by market in the app.</div></div>
+      <div class="faq-group" data-i18n="fg2">Purchasing &amp; ownership</div>
+      <div class="faq-item"><div class="faq-q"><span data-i18n="fqprice">How much does a section cost?</span><div class="faq-chevron"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-a" data-i18n="faprice">€9 per section, one-time. No recurring fees for individual sections. Pro is available at €16.99/month or €169.90/year for unlimited access.</div></div>
+      <div class="faq-item"><div class="faq-q"><span data-i18n="fq3q">What does "one-time purchase" mean?</span><div class="faq-chevron"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-a" data-i18n="fq3a">You pay once and the Liquid code is written directly into your theme. You own that code — even if you uninstall SectionDrop, your sections keep working perfectly.</div></div>
+      <div class="faq-item"><div class="faq-q"><span data-i18n="fq5q">Can I install a section in multiple themes?</span><div class="faq-chevron"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-a" data-i18n="fq5a">Yes. Once purchased, reinstall in as many themes as you want. No limit, no extra cost.</div></div>
+      <div class="faq-item"><div class="faq-q"><span data-i18n="fq8q">Are updates free?</span><div class="faq-chevron"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-a" data-i18n="fq8a">Yes. Updates are always free for sections you have purchased. Badge appears in My Sections. Apply with one click.</div></div>
+      <div class="faq-group" data-i18n="fg3">Try Before You Buy</div>
+      <div class="faq-item"><div class="faq-q"><span data-i18n="fqtry">How does Try Before You Buy work?</span><div class="faq-chevron"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-a" data-i18n="fatry">Click "Try section". SectionDrop creates a private copy of your active theme and installs the section in it — 20–40 seconds. Preview and customize freely. Your live store is never affected.</div></div>
+      <div class="faq-item"><div class="faq-q"><span data-i18n="fq4q">Will my live store be affected during preview?</span><div class="faq-chevron"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-a" data-i18n="fq4a">No. The preview creates a private, unpublished copy of your theme. Your live store is completely unchanged.</div></div>
+      <div class="faq-item"><div class="faq-q"><span data-i18n="fqwhy">Why does the preview take 20–40 seconds?</span><div class="faq-chevron"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-a" data-i18n="fawhy">Creating a preview duplicates your entire theme — all files, assets and settings. We can't speed this up; it depends on your theme size and Shopify's processing time.</div></div>
+      <div class="faq-group" data-i18n="fg4">Pro plan</div>
+      <div class="faq-item"><div class="faq-q"><span data-i18n="fqpro">What is included in Pro?</span><div class="faq-chevron"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-a" data-i18n="fapro">Pro gives unlimited access to all current and future sections. New sections included automatically. €16.99/month or €169.90/year (2 months free).</div></div>
+      <div class="faq-item"><div class="faq-q"><span data-i18n="fq6q">What happens to my sections if I cancel Pro?</span><div class="faq-chevron"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-a" data-i18n="fq6a">Nothing. Installed sections keep working exactly as before. Cancelling Pro only means you can no longer install new sections without purchasing individually.</div></div>
+      <div class="faq-item"><div class="faq-q"><span data-i18n="fqswitch">Can I switch between monthly and yearly?</span><div class="faq-chevron"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-a" data-i18n="faswitch">Yes, from the Pro page in the app at any time. Change takes effect at the start of your next billing period.</div></div>
+      <div class="faq-group" data-i18n="fg5">Support</div>
+      <div class="faq-item"><div class="faq-q"><span data-i18n="fqsupport">How do I get support?</span><div class="faq-chevron"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-a" data-i18n="fasupport">Email hallo@ecomstudionimma.nl. We respond within 1 business day.</div></div>
+      <div class="faq-item"><div class="faq-q"><span data-i18n="fqbug">A section is not displaying correctly. What should I do?</span><div class="faq-chevron"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-a" data-i18n="fabug">Check your theme is Shopify 2.0. Reinstall via My Sections. Confirm the section is added to your page template in the theme editor. If it persists, email us with your store URL and section name.</div></div>
     </div>
   </div>
 </div>
 
-<!-- ======== PRIVACY ======== -->
+<!-- ══════════ PRIVACY PAGE ══════════ -->
 <div id="page-privacy" class="page">
-  <div class="wrap">
-    <div class="page-hero">
+  <div class="subpage-hero">
+    <div class="wrap">
       <h1 data-i18n="prv_h">Privacy Policy</h1>
       <p data-i18n="prv_p">Last updated: May 22, 2026</p>
     </div>
-    <div class="prose">
+  </div>
+  <div class="wrap">
+    <div class="privacy-inner">
       <h2 data-i18n="pp1h">1. Who we are</h2>
-      <p data-i18n="pp1p">SectionDrop is a Shopify app developed and operated by Ecom Studio Nimma. Questions? Contact us at <a href="mailto:hallo@ecomstudionimma.nl">hallo@ecomstudionimma.nl</a>.</p>
+      <p data-i18n="pp1p">SectionDrop is developed and operated by Ecom Studio Nimma. Questions: <a href="mailto:hallo@ecomstudionimma.nl">hallo@ecomstudionimma.nl</a>.</p>
       <h2 data-i18n="pp2h">2. What data we collect</h2>
       <p data-i18n="pp2p">When you install and use SectionDrop, we collect:</p>
       <ul>
-        <li data-i18n="ppl1">Your Shopify store domain and access token (required for authentication and API access)</li>
+        <li data-i18n="ppl1">Your Shopify store domain and access token</li>
         <li data-i18n="ppl2">Purchase records (which sections you have purchased)</li>
         <li data-i18n="ppl3">Installation records (which sections are installed in which themes)</li>
-        <li data-i18n="ppl4">Reviews you submit within the app</li>
-        <li data-i18n="ppl5">Section ideas submitted via the Suggest feature</li>
-        <li data-i18n="ppl6">Your merchant name (entered during onboarding)</li>
+        <li data-i18n="ppl4">Reviews submitted in the app</li>
+        <li data-i18n="ppl5">Section ideas via the Suggest feature</li>
+        <li data-i18n="ppl6">Your merchant name (from onboarding)</li>
       </ul>
       <p data-i18n="pp2p2">We do not collect data from your store's customers.</p>
       <h2 data-i18n="pp3h">3. How we use your data</h2>
-      <p data-i18n="pp3p">We use your data solely to operate the SectionDrop app — authenticating your session, processing purchases, installing and updating sections, and sending update notifications. We do not sell your data.</p>
+      <p data-i18n="pp3p">Solely to operate the app — authentication, purchases, section installation and update notifications. We do not sell your data.</p>
       <h2 data-i18n="pp4h">4. Data storage</h2>
-      <p data-i18n="pp4p">Your data is stored in a secure database on Vercel infrastructure. Access tokens are stored as required by Shopify's OAuth flow and used exclusively to communicate with Shopify's API on your behalf.</p>
-      <h2 data-i18n="pp5h">5. Data retention and deletion</h2>
-      <p data-i18n="pp5p">When you uninstall SectionDrop, your session data is removed automatically. For full deletion of all data, email <a href="mailto:hallo@ecomstudionimma.nl">hallo@ecomstudionimma.nl</a>. We comply with Shopify's mandatory GDPR webhooks.</p>
+      <p data-i18n="pp4p">Stored in a secure database on Vercel infrastructure. Access tokens used exclusively to communicate with Shopify's API on your behalf.</p>
+      <h2 data-i18n="pp5h">5. Retention and deletion</h2>
+      <p data-i18n="pp5p">Session data removed on uninstall. Full deletion: email <a href="mailto:hallo@ecomstudionimma.nl">hallo@ecomstudionimma.nl</a>. We comply with Shopify's GDPR webhooks.</p>
       <h2 data-i18n="pp6h">6. Third-party services</h2>
       <ul>
-        <li data-i18n="ppl7">Shopify — authentication, billing and theme API access</li>
+        <li data-i18n="ppl7">Shopify — authentication, billing and theme API</li>
         <li data-i18n="ppl8">Vercel — hosting and infrastructure</li>
-        <li data-i18n="ppl9">Anthropic Claude API — Store Analyzer feature (page HTML is analyzed, not stored)</li>
+        <li data-i18n="ppl9">Anthropic Claude API — Store Analyzer (HTML analyzed, not stored)</li>
       </ul>
       <h2 data-i18n="pp7h">7. Your rights</h2>
-      <p data-i18n="pp7p">You have the right to access, correct or delete your personal data. Contact us at <a href="mailto:hallo@ecomstudionimma.nl">hallo@ecomstudionimma.nl</a>.</p>
+      <p data-i18n="pp7p">Right to access, correct or delete your data. Email <a href="mailto:hallo@ecomstudionimma.nl">hallo@ecomstudionimma.nl</a>.</p>
       <h2 data-i18n="pp8h">8. Changes</h2>
-      <p data-i18n="pp8p">We may update this policy from time to time. The date at the top reflects the most recent update.</p>
+      <p data-i18n="pp8p">We may update this policy. The date at the top reflects the most recent update.</p>
     </div>
-  </div>
-</div>
-
-<!-- FOOTER -->
-<div class="site-footer">
-  <div class="wrap">
-    <footer>
-      <span class="footer-logo" onclick="nav('home')">SectionDrop</span>
-      <ul class="footer-links">
-        <li><a onclick="nav('how')" data-i18n="nl_how">How it works</a></li>
-        <li><a onclick="nav('faq')" data-i18n="nl_faq">FAQ</a></li>
-        <li><a onclick="nav('privacy')" data-i18n="nl_priv">Privacy Policy</a></li>
-        <li><a href="mailto:hallo@ecomstudionimma.nl" data-i18n="nl_contact">Contact</a></li>
-      </ul>
-      <span class="footer-copy">© 2026 Ecom Studio Nimma</span>
-    </footer>
   </div>
 </div>
 
 <script>
+// ─── NAV SCROLL ───
+window.addEventListener('scroll',()=>{
+  document.getElementById('main-nav').classList.toggle('scrolled',window.scrollY>20);
+});
+
+// ─── PAGE ROUTING ───
 const PAGES=['home','how','faq','privacy'];
 const ROUTES={home:'/',how:'/how-it-works',faq:'/faq',privacy:'/privacy'};
-function nav(p){
-  PAGES.forEach(id=>{const el=document.getElementById('page-'+id);if(el)el.classList.toggle('active',id===p)});
+function goPage(p){
+  PAGES.forEach(id=>{
+    const el=document.getElementById('page-'+id);
+    if(el)el.classList.toggle('active',id===p);
+  });
   history.pushState({},'',ROUTES[p]||'/');
   scrollTo(0,0);
+  // Re-trigger animations
+  document.querySelectorAll('.feat,.how-step,.price-card,.faq-item').forEach(el=>{
+    el.style.opacity='0';el.style.transform='translateY(12px)';
+  });
+  setTimeout(()=>observeAnimations(),50);
 }
 const path=location.pathname;
-if(path==='/how-it-works')nav('how');
-else if(path==='/faq')nav('faq');
-else if(path==='/privacy')nav('privacy');
+if(path==='/how-it-works')goPage('how');
+else if(path==='/faq')goPage('faq');
+else if(path==='/privacy')goPage('privacy');
 
+// ─── FAQ ACCORDION ───
 document.querySelectorAll('.faq-q').forEach(q=>{
   q.addEventListener('click',()=>{
-    const item=q.parentElement;const open=item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    const item=q.parentElement;
+    const open=item.classList.contains('open');
+    item.closest('.faq-list').querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
     if(!open)item.classList.add('open');
   });
 });
 
-// Translations
-const T={
-en:{
-  nl_how:'How it works',nl_faq:'FAQ',nl_priv:'Privacy Policy',nl_contact:'Contact',nl_cta:'Install app',
-  h_label:'For Shopify 2.0 themes',h_title:'Add sections.\nNo developer\nneeded.',h_sub:'Buy professionally designed Liquid sections and install them directly into your Shopify theme editor. One-time payment — yours to keep forever.',
-  h_cta:'Get started free',h_demo:'View demo store',free_badge:'Free',
-  hv_title:'Section library',hv2_title:'Installation flow',
-  tr1:'One-time purchase, yours forever',tr2:'Works with any Shopify 2.0 theme',tr3:'No coding required',tr4:'Try before you buy',tr5:'Lifetime updates',
-  f1t:'Not a page builder',f1b:'Sections are installed directly into your Shopify theme. You keep working in the native theme editor — no new interface to learn, no rebuilding your store.',
-  f2t:'Buy once. Own forever.',f2b:'The Liquid code is written directly into your theme. It belongs to you — no lock-in, no dependency on SectionDrop. Installed sections work forever.',
-  f3t:'Try before you buy',f3b:'Preview any section in a private copy of your own theme before purchasing. Your live store is never touched.',
-  f4t:'Works in minutes',f4b:'Select, purchase, choose your theme, click install. The section appears in your theme editor immediately — no setup, no developer.',
-  f5t:'Lifetime updates',f5b:"When a section you own receives an update, you'll see a badge in My Sections. Apply it with one click — always free.",
-  f6t:'Matches your theme',f6b:"Sections automatically inherit your theme's fonts, colors and color schemes. They look native — as if built into your theme from the start.",
-  how_eyebrow:'How it works',how_title:'From app to theme in minutes.',
-  hs1t:'Browse the library',hs1b:'Browse 30+ sections. Filter by category or market.',
-  hs2t:'Try it in your own theme',hs2b:"Click \"Try section\" — preview in a private copy of your theme. 20–40 seconds. Live store untouched.",
-  hs3t:'Purchase once',hs3b:'Pay €9 — one time. Yours permanently. All payments via Shopify billing.',
-  hs4t:'Install & customize',hs4b:'Select your theme, click Install. Open the theme editor, add the section to any page. No code required.',
-  how_more:'Read the full install guide →',
-  hr1:'Browse Library',hr1s:'30+ sections',hr2:'Try in your theme',hr2s:'20–40 sec',hr3:'Purchase',hr4:'Install in theme',hr4s:'1 click',hr5:'Customize in editor',hr5s:'No code',
-  pr_eyebrow:'Pricing',pr_title:'Simple pricing. No surprises.',
-  pc1l:'Free',pc1n:'Browse & Try',pc1p:'Free to install',pc1f1:'Full section library access',pc1f2:'Try any section in your own theme',pc1f3:'Private preview, live store untouched',
-  pc2l:'Most popular',pc2n:'Pay per section',pc2p:'€9 per section, one-time',pc2f1:'Buy only what you need',pc2f2:'You own the code — forever',pc2f3:'Lifetime updates included',pc2f4:'Reinstall in unlimited themes',
-  pc3l:'Pro',pc3n:'SectionDrop Pro',pc3p:'€16.99/mo or €169.90/yr',pc3f1:'Unlimited access to all sections',pc3f2:'New sections added automatically',pc3f3:'Lifetime updates on everything',pc3f4:'Cancel anytime, sections stay',
-  fq_h:'Common questions',fq_p:"Can't find your answer? We respond within 1 business day.",fq_all:'View all FAQ →',
-  cta_h:'Your theme. Better sections.',cta_p:'Free to install. Buy only what you need.',cta_btn:'Install SectionDrop free',
-  fq1q:'Does SectionDrop work with my theme?',fq1a:"SectionDrop works with all Shopify 2.0 themes — Dawn, Horizon, Refresh, Craft, Sense, and any other 2.0 theme. Sections automatically inherit your theme's fonts and colors. Vintage/legacy themes (pre-2.0) are not supported.",
-  fq2q:'Do I need to know how to code?',fq2a:'No. Sections are installed with one click. All customization happens in the Shopify theme editor. No code at any point.',
-  fq3q:'What does "one-time purchase" mean exactly?',fq3a:"You pay once and the Liquid code is written directly into your theme. You own that code — even if you uninstall the app, your sections keep working.",
-  fq4q:'Can I install a section in multiple themes?',fq4a:'Yes. Once purchased, reinstall in as many themes as you want. No limit, no extra cost.',
-  fq5q:'Will my live store be affected during the preview?',fq5a:'No. The preview is a private, unpublished copy of your theme. Your live store is completely unchanged.',
-  fq6q:'What happens to my sections if I cancel Pro?',fq6a:'Nothing. Installed sections keep working. Cancelling Pro means you can no longer install new sections without purchasing individually.',
-  fq7q:'Are sections available in Dutch?',fq7a:'Most sections use English defaults, fully editable in the theme editor. Some sections are made for the Dutch market with Dutch defaults. Filter by market in the app.',
-  fq8q:'Are updates free?',fq8a:'Yes. Updates are always free for sections you have purchased.',
-  fq3qx:'How do I install SectionDrop?',fq3ax:'Go to the Shopify App Store, search for SectionDrop and click Install. Free to install — you only pay when you purchase sections.',
-  fq4qx:'Are sections available in Dutch?',fq4ax:'Most sections use English defaults, fully editable in the theme editor. Some are made for the Dutch market. Filter by market in the app.',
-  fq5qx:'How much does a section cost?',fq5ax:'€9 per section, one-time. Pro is €16.99/month or €169.90/year for unlimited access.',
-  fq9q:'How does Try Before You Buy work?',fq9a:"Click \"Try section\". SectionDrop creates a private copy of your active theme and installs the section in it — 20–40 seconds. Preview and customize freely. Your live store is never affected.",
-  fq10q:'Why does the preview take 20–40 seconds?',fq10a:"Creating a preview requires duplicating your entire theme — all files, assets and settings. We can't speed this up; it depends on your theme size and Shopify's processing time.",
-  fq11q:'What is included in Pro?',fq11a:'Unlimited access to all current and future sections. New sections included automatically. €16.99/month or €169.90/year.',
-  fq12q:'Can I switch between monthly and yearly?',fq12a:'Yes, from the Pro page in the app. Change takes effect at the start of your next billing period.',
-  fq13q:'How do I get support?',fq13a:'Email hallo@ecomstudionimma.nl. We respond within 1 business day.',
-  fq14q:'A section is not displaying correctly. What should I do?',fq14a:"Check your theme is Shopify 2.0. Reinstall via My Sections. Confirm the section is added to your page template in the theme editor. If it persists, email us with your store URL and section name.",
-  fg1:'Getting started',fg2:'Purchasing & ownership',fg3:'Try Before You Buy',fg4:'Pro plan',fg5:'Support',
-  how_pg_label:'Installation guide',how_pg_h:'How to install a section',how_pg_p:'From browsing to live on your store — step by step.',
-  hw1:'Step 1 — Install SectionDrop',hw1p:'Go to the Shopify App Store and install SectionDrop. Free to install. A short onboarding takes about one minute.',hw1tip:'SectionDrop requires a Shopify 2.0 theme.',
-  hw2:'Step 2 — Browse the library',hw2p:'Open the Library in the app. Filter by category or market. Click any section for the full description and preview.',
-  hw3:'Step 3 — Try before you buy',hw3p:'Click "Try section". SectionDrop creates a private copy of your active theme and installs the section there. 20–40 seconds.',hw3tip:'Your live store is never affected. The preview theme cannot be published.',hw3p2:'When ready, click "Open preview editor" to see the section in your own theme design.',
-  hw4:'Step 4 — Purchase',hw4p:'Click "Buy for €9". Redirected to Shopify payment flow. Returns to SectionDrop automatically after approval.',hw4tip:"All payments go through Shopify's billing and appear in your billing overview.",
-  hw5:'Step 5 — Install in your theme',hw5p:'On the install page, select your theme and click "Install". Done.',
-  is1t:'Select your theme',is1b:'Choose any installed theme — live, development, or backup.',
-  is2t:'Click Install',is2b:"The section's Liquid file is written directly to your theme.",
-  is3t:'Open the theme editor',is3b:'Admin → Online Store → Themes → Customize. The section is under "Add section".',
-  hw6:'Step 6 — Customize',hw6p:"In the theme editor, click \"Add section\" and search for the section. Add to any page and customize everything — no code.",hw6tip:"Sections match your theme's colors and fonts automatically.",
-  hw7:'Reinstalling in a different theme',hw7p:'My Sections → find the section → Install → select a different theme. No limit.',
-  hw8:'Applying updates',hw8p:'Badge appears in My Sections when an update is available. Click "Update & reinstall". Always free.',
-  hw_cta:'Install SectionDrop and get started',
-  faq_pg_h:'Frequently asked questions',faq_pg_p:"Can't find your answer? Email hallo@ecomstudionimma.nl — we respond within 1 business day.",
-  prv_h:'Privacy Policy',prv_p:'Last updated: May 22, 2026',
-  pp1h:'1. Who we are',pp1p:'SectionDrop is a Shopify app developed by Ecom Studio Nimma. Contact: hallo@ecomstudionimma.nl.',
-  pp2h:'2. What data we collect',pp2p:'When you install and use SectionDrop, we collect:',
-  ppl1:'Your Shopify store domain and access token',ppl2:'Purchase records',ppl3:'Installation records',ppl4:'Reviews submitted in the app',ppl5:'Section ideas via the Suggest feature',ppl6:'Your merchant name (from onboarding)',
-  pp2p2:"We do not collect data from your store's customers.",
-  pp3h:'3. How we use your data',pp3p:'We use your data solely to operate the app — authentication, purchases, section installation and update notifications. We do not sell your data.',
-  pp4h:'4. Data storage',pp4p:"Data is stored in a secure database on Vercel infrastructure. Access tokens are used exclusively to communicate with Shopify's API on your behalf.",
-  pp5h:'5. Data retention and deletion',pp5p:'Session data is removed on uninstall. For full deletion email hallo@ecomstudionimma.nl. We comply with Shopify GDPR webhooks.',
-  pp6h:'6. Third-party services',ppl7:'Shopify — authentication, billing and theme API',ppl8:'Vercel — hosting and infrastructure',ppl9:'Anthropic Claude API — Store Analyzer (HTML analyzed, not stored)',
-  pp7h:'7. Your rights',pp7p:'Right to access, correct or delete your data. Email hallo@ecomstudionimma.nl.',
-  pp8h:'8. Changes',pp8p:'We may update this policy. The date at the top reflects the most recent update.',
-},
-nl:{
-  nl_how:'Hoe het werkt',nl_faq:'FAQ',nl_priv:'Privacybeleid',nl_contact:'Contact',nl_cta:'App installeren',
-  h_label:'Voor Shopify 2.0 thema\'s',h_title:'Secties toevoegen.\nGeen developer\nnodig.',h_sub:'Koop professioneel ontworpen Liquid secties en installeer ze direct in je Shopify theme editor. Eenmalige betaling — voor altijd van jou.',
-  h_cta:'Gratis aan de slag',h_demo:'Bekijk demo store',free_badge:'Gratis',
-  hv_title:'Sectie library',hv2_title:'Installatiestappen',
-  tr1:'Eenmalige aankoop, altijd van jou',tr2:'Werkt met elk Shopify 2.0 thema',tr3:'Geen code nodig',tr4:'Probeer voor je koopt',tr5:'Levenslange updates',
-  f1t:'Geen page builder',f1b:'Secties worden direct in je Shopify thema geïnstalleerd. Je blijft werken in de native theme editor — geen nieuw systeem, geen store opnieuw bouwen.',
-  f2t:'Eén keer kopen. Voor altijd.',f2b:'De Liquid code wordt direct in je thema geschreven. Jij bezit die code — geen lock-in, geen afhankelijkheid van SectionDrop. Geïnstalleerde secties werken altijd.',
-  f3t:'Probeer voor je koopt',f3b:'Bekijk elke sectie in een privékopie van je eigen thema voor aankoop. Je live store wordt nooit aangeraakt.',
-  f4t:'Werkt in minuten',f4b:'Selecteer, betaal, kies je thema, klik installeren. De sectie verschijnt direct in je theme editor — geen setup, geen developer.',
-  f5t:'Levenslange updates',f5b:'Wanneer een sectie die je bezit een update krijgt, zie je een badge in Mijn Secties. Toepassen met één klik — altijd gratis.',
-  f6t:'Past bij je thema',f6b:'Secties nemen automatisch de lettertypen, kleuren en kleurenschema\'s van je thema over. Ze zien er native uit — alsof ze er altijd al in zaten.',
-  how_eyebrow:'Hoe het werkt',how_title:'Van app naar thema in minuten.',
-  hs1t:'Blader door de library',hs1b:'Blader door 30+ secties. Filter op categorie of markt.',
-  hs2t:'Probeer in je eigen thema',hs2b:'Klik "Try section" — preview in een privékopie van je thema. 20–40 seconden. Live store onaangetast.',
-  hs3t:'Eén keer betalen',hs3b:'Betaal €9 — eenmalig. Voor altijd van jou. Alle betalingen via Shopify.',
-  hs4t:'Installeren & aanpassen',hs4b:'Selecteer je thema, klik Installeren. Open de theme editor, voeg de sectie toe aan elke pagina. Geen code nodig.',
-  how_more:'Lees de volledige installatiegids →',
-  hr1:'Sectie library',hr1s:'30+ secties',hr2:'Probeer in je thema',hr2s:'20–40 sec',hr3:'Kopen',hr4:'Installeren',hr4s:'1 klik',hr5:'Aanpassen in editor',hr5s:'Geen code',
-  pr_eyebrow:'Prijzen',pr_title:'Eenvoudige prijzen. Geen verrassingen.',
-  pc1l:'Gratis',pc1n:'Blader & Probeer',pc1p:'Gratis te installeren',pc1f1:'Volledige toegang tot de sectie library',pc1f2:'Probeer elke sectie in je eigen thema',pc1f3:'Privé preview, live store onaangetast',
-  pc2l:'Meest populair',pc2n:'Per sectie',pc2p:'€9 per sectie, eenmalig',pc2f1:'Koop alleen wat je nodig hebt',pc2f2:'Jij bezit de code — voor altijd',pc2f3:'Levenslange updates inbegrepen',pc2f4:'Herinstalleer in onbeperkt thema\'s',
-  pc3l:'Pro',pc3n:'SectionDrop Pro',pc3p:'€16,99/mnd of €169,90/jaar',pc3f1:'Onbeperkte toegang tot alle secties',pc3f2:'Nieuwe secties automatisch inbegrepen',pc3f3:'Levenslange updates op alles',pc3f4:'Op elk moment opzeggen, secties blijven',
-  fq_h:'Veelgestelde vragen',fq_p:'Geen antwoord gevonden? We reageren binnen 1 werkdag.',fq_all:'Bekijk alle vragen →',
-  cta_h:'Jouw thema. Betere secties.',cta_p:'Gratis installeren. Koop alleen wat je nodig hebt.',cta_btn:'Installeer SectionDrop gratis',
-  fq1q:'Werkt SectionDrop met mijn thema?',fq1a:'SectionDrop werkt met alle Shopify 2.0 thema\'s — Dawn, Horizon, Refresh, Craft, Sense en elk ander 2.0 thema. Secties nemen automatisch de lettertypen en kleuren van je thema over. Vintage/legacy thema\'s worden niet ondersteund.',
-  fq2q:'Moet ik kunnen programmeren?',fq2a:'Nee. Secties worden met één klik geïnstalleerd. Alles aanpassen via de Shopify theme editor. Geen code op enig moment.',
-  fq3q:'Wat betekent "eenmalige aankoop" precies?',fq3a:'Je betaalt één keer en de Liquid code wordt direct in je thema geschreven. Jij bezit die code — ook als je de app verwijdert blijven je secties werken.',
-  fq4q:'Kan ik een sectie in meerdere thema\'s installeren?',fq4a:'Ja. Na aankoop herinstalleer je in zoveel thema\'s als je wilt. Geen limiet, geen extra kosten.',
-  fq5q:'Wordt mijn live store beïnvloed tijdens de preview?',fq5a:"Nee. De preview is een privé, niet-gepubliceerde kopie van je thema. Je live store blijft volledig ongewijzigd.",
-  fq6q:'Wat gebeurt er met mijn secties als ik Pro opzeg?',fq6a:'Niets. Geïnstalleerde secties blijven gewoon werken. Pro opzeggen betekent alleen dat je geen nieuwe secties meer kunt installeren zonder ze afzonderlijk te kopen.',
-  fq7q:'Zijn secties beschikbaar in het Nederlands?',fq7a:'De meeste secties hebben Engelse standaardtekst, volledig aanpasbaar. Sommige zijn specifiek gemaakt voor de Nederlandse markt. Filter op markt in de app.',
-  fq8q:'Zijn updates gratis?',fq8a:'Ja. Updates zijn altijd gratis voor secties die je hebt gekocht.',
-  fq3qx:'Hoe installeer ik SectionDrop?',fq3ax:'Ga naar de Shopify App Store, zoek SectionDrop en klik Installeren. Gratis te installeren — je betaalt alleen bij aankoop van secties.',
-  fq4qx:'Zijn secties beschikbaar in het Nederlands?',fq4ax:'De meeste hebben Engelse standaardtekst, aanpasbaar in de theme editor. Sommige zijn voor de Nederlandse markt. Filter op markt in de app.',
-  fq5qx:'Wat kost een sectie?',fq5ax:'€9 per sectie, eenmalig. Pro is €16,99/mnd of €169,90/jaar voor onbeperkte toegang.',
-  fq9q:'Hoe werkt Try Before You Buy?',fq9a:'Klik "Try section". SectionDrop maakt een privékopie van je actieve thema en installeert de sectie daarin — 20–40 seconden. Bekijk en pas vrij aan. Je live store wordt nooit beïnvloed.',
-  fq10q:'Waarom duurt de preview 20–40 seconden?',fq10a:'Het aanmaken van een preview vereist het dupliceren van je gehele thema. We kunnen dit niet versnellen — het hangt af van je thema en de verwerkingstijd van Shopify.',
-  fq11q:'Wat is inbegrepen in Pro?',fq11a:'Onbeperkte toegang tot alle huidige en toekomstige secties. Nieuwe secties automatisch inbegrepen. €16,99/mnd of €169,90/jaar.',
-  fq12q:'Kan ik wisselen tussen maandelijks en jaarlijks?',fq12a:'Ja, via de Pro-pagina in de app. Wijziging gaat in aan het begin van je volgende factureringsperiode.',
-  fq13q:'Hoe krijg ik ondersteuning?',fq13a:'E-mail hallo@ecomstudionimma.nl. We reageren binnen 1 werkdag.',
-  fq14q:'Een sectie wordt niet correct weergegeven. Wat moet ik doen?',fq14a:"Controleer of je thema Shopify 2.0 is. Herinstalleer via Mijn Secties. Controleer of de sectie is toegevoegd aan je paginatemplate. Stuur ons een e-mail als het aanhoudt.",
-  fg1:'Aan de slag',fg2:'Aankoop & eigendom',fg3:'Try Before You Buy',fg4:'Pro plan',fg5:'Support',
-  how_pg_label:'Installatiegids',how_pg_h:'Hoe installeer je een sectie',how_pg_p:'Van browsen tot live op je store — stap voor stap.',
-  hw1:'Stap 1 — Installeer SectionDrop',hw1p:'Ga naar de Shopify App Store en installeer SectionDrop. Gratis te installeren. Korte onboarding van ongeveer één minuut.',hw1tip:'SectionDrop vereist een Shopify 2.0 thema.',
-  hw2:'Stap 2 — Blader door de library',hw2p:'Open de Library in de app. Filter op categorie of markt. Klik een sectie voor de volledige beschrijving en preview.',
-  hw3:'Stap 3 — Probeer voor je koopt',hw3p:'Klik "Try section". SectionDrop maakt een privékopie van je actieve thema en installeert de sectie daarin. 20–40 seconden.',hw3tip:'Je live store wordt nooit beïnvloed. Het preview thema kan niet worden gepubliceerd.',hw3p2:'Klik "Open preview editor" om de sectie te zien in je eigen thema.',
-  hw4:'Stap 4 — Kopen',hw4p:'Klik "Buy for €9". Doorgestuurd naar Shopify betalingsproces. Automatisch terug na goedkeuring.',hw4tip:'Alle betalingen via Shopify facturering.',
-  hw5:'Stap 5 — Installeren in je thema',hw5p:'Op de installatiepagina selecteer je je thema en klik je op "Install". Klaar.',
-  is1t:'Selecteer je thema',is1b:'Kies een geïnstalleerd thema — live, development of backup.',
-  is2t:'Klik Install',is2b:'Het Liquid bestand van de sectie wordt direct naar je thema geschreven.',
-  is3t:'Open de theme editor',is3b:'Admin → Online Store → Thema\'s → Aanpassen. De sectie staat onder "Sectie toevoegen".',
-  hw6:'Stap 6 — Aanpassen',hw6p:'Klik "Sectie toevoegen" in de theme editor en zoek de sectienaam. Voeg toe aan elke pagina en pas alles aan — geen code.',hw6tip:'Secties passen automatisch bij de kleuren en lettertypen van je thema.',
-  hw7:'Herinstalleren in een ander thema',hw7p:'Mijn Secties → sectie zoeken → Install → ander thema selecteren. Geen limiet.',
-  hw8:'Updates toepassen',hw8p:'Badge in Mijn Secties bij een update. Klik "Update & reinstall". Altijd gratis.',
-  hw_cta:'Installeer SectionDrop en begin',
-  faq_pg_h:'Veelgestelde vragen',faq_pg_p:'Geen antwoord gevonden? E-mail hallo@ecomstudionimma.nl — we reageren binnen 1 werkdag.',
-  prv_h:'Privacybeleid',prv_p:'Laatst bijgewerkt: 22 mei 2026',
-  pp1h:'1. Wie wij zijn',pp1p:'SectionDrop is een Shopify-app van Ecom Studio Nimma. Contact: hallo@ecomstudionimma.nl.',
-  pp2h:'2. Welke gegevens we verzamelen',pp2p:'Wanneer je SectionDrop installeert en gebruikt, verzamelen we:',
-  ppl1:'Je Shopify store-domein en toegangstoken',ppl2:'Aankooprecords',ppl3:'Installatierecords',ppl4:'Reviews ingediend in de app',ppl5:'Sectie-ideeën via de Suggest-functie',ppl6:'Je merchant-naam (van onboarding)',
-  pp2p2:'We verzamelen geen gegevens van de klanten van je winkel.',
-  pp3h:'3. Hoe we je gegevens gebruiken',pp3p:'Uitsluitend voor de werking van de app — authenticatie, aankopen, installaties en update-meldingen. We verkopen geen gegevens.',
-  pp4h:'4. Gegevensopslag',pp4p:'Gegevens opgeslagen in een beveiligde database op Vercel. Toegangstokens uitsluitend voor communicatie met Shopify\'s API.',
-  pp5h:'5. Bewaring en verwijdering',pp5p:'Sessiegegevens verwijderd bij verwijdering app. Volledige verwijdering via hallo@ecomstudionimma.nl. We voldoen aan Shopify GDPR-webhooks.',
-  pp6h:'6. Diensten van derden',ppl7:'Shopify — authenticatie, facturering en thema-API',ppl8:'Vercel — hosting en infrastructuur',ppl9:'Anthropic Claude API — Store Analyzer (HTML geanalyseerd, niet opgeslagen)',
-  pp7h:'7. Jouw rechten',pp7p:'Recht op inzage, correctie of verwijdering. E-mail hallo@ecomstudionimma.nl.',
-  pp8h:'8. Wijzigingen',pp8p:'We kunnen dit beleid bijwerken. De datum bovenaan geeft de meest recente update aan.',
-}};
-
-let lang='en';
-function setLang(l){
-  lang=l;
-  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const k=el.dataset.i18n;
-    if(T[l]&&T[l][k]!==undefined)el.textContent=T[l][k];
+// ─── ANIMATIONS ───
+function observeAnimations(){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach((e,i)=>{
+      if(e.isIntersecting){
+        setTimeout(()=>{
+          e.        opacity='1';
+          e.target.style.transform='translateY(0)';
+        },i*60);
+        obs.unobserve(e.target);
+      }
+    });
+  },{threshold:0.06});
+  document.querySelectorAll('.feat,.how-step,.price-card,.faq-item').forEach(el=>{
+    el.style.opacity='0';el.style.transform='translateY(12px)';
+    el.style.transition='opacity 0.5s ease,transform 0.5s ease';
+    obs.observe(el);
   });
-  document.documentElement.lang=l;
 }
-
-// Entrance animations
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)'}});
-},{threshold:0.06});
-document.querySelectorAll('.feat,.how-step,.price-card,.faq-item').forEach(el=>{
-  el.style.opacity='0';el.style.transform='translateY(10px)';el.style.transition='opacity 0.4s ease,transform 0.4s ease';
-  obs.observe(el);
-});
+observeAnimations();
 </script>
 </body>
 </html>
