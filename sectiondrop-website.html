@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SectionDrop — Liquid sections for your Shopify theme</title>
+  <meta name="description" content="Buy professionally designed Liquid sections for your Shopify 2.0 theme. One-time purchase, yours forever. No coding required.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #f8f7f4;
+      --mid: #888;
+      --border: #e2e0da;
+      --accent: #0a0a0a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 2.5rem;
+      background: rgba(248, 247, 244, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.375rem;
+      letter-spacing: -0.02em;
+      color: var(--black);
+      text-decoration: none;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .lang-switcher {
+      display: flex;
+      gap: 0.5rem;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .lang-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--mid);
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: inherit;
+      letter-spacing: inherit;
+      text-transform: inherit;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      transition: color 0.15s, background 0.15s;
+    }
+
+    .lang-btn.active {
+      color: var(--black);
+      background: var(--border);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--black);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 0.625rem 1.25rem;
+      border-radius: 6px;
+      transition: opacity 0.15s;
+    }
+
+    .nav-cta:hover { opacity: 0.8; }
+
+    /* HERO */
+    .hero {
+      padding: 9rem 2.5rem 6rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 2rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--mid);
+    }
+
+    .hero-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2.75rem, 6vw, 5rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      max-width: 820px;
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--mid);
+    }
+
+    .hero-sub {
+      font-size: 1.0625rem;
+      color: #555;
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--black);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      padding: 0.875rem 1.75rem;
+      border-radius: 6px;
+      transition: opacity 0.15s, gap 0.2s;
+    }
+
+    .btn-primary:hover { opacity: 0.8; gap: 0.75rem; }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--black);
+      text-decoration: none;
+      font-size: 0.9375rem;
+      font-weight: 400;
+      padding: 0.875rem 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      transition: border-color 0.15s;
+    }
+
+    .btn-secondary:hover { border-color: #999; }
+
+    /* FEATURES STRIP */
+    .strip {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 2rem 2.5rem;
+      display: flex;
+      gap: 3rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .strip-item {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      font-size: 0.875rem;
+      color: #444;
+      font-weight: 400;
+    }
+
+    .strip-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--black);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* HOW IT WORKS */
+    .section {
+      padding: 5rem 2.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      margin-bottom: 3.5rem;
+      max-width: 500px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .step {
+      padding: 2rem 1.75rem;
+      border-right: 1px solid var(--border);
+    }
+
+    .step:last-child { border-right: none; }
+
+    .step-num {
+      font-family: 'Instrument Serif', serif;
+      font-size: 2.5rem;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: 1rem;
+      letter-spacing: -0.04em;
+    }
+
+    .step-title {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .step-body {
+      font-size: 0.875rem;
+      color: #666;
+      line-height: 1.65;
+    }
+
+    /* PRICING */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .pricing-card {
+      background: var(--white);
+      padding: 2rem;
+    }
+
+    .pricing-tag {
+      display: inline-block;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: var(--black);
+      color: var(--white);
+      padding: 0.25rem 0.625rem;
+      border-radius: 4px;
+      margin-bottom: 1.25rem;
+    }
+
+    .pricing-tag.light {
+      background: var(--border);
+      color: var(--black);
+    }
+
+    .pricing-name {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.5rem;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .pricing-price {
+      font-size: 0.9375rem;
+      color: #555;
+      margin-bottom: 1.5rem;
+    }
+
+    .pricing-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.625rem;
+    }
+
+    .pricing-features li {
+      font-size: 0.875rem;
+      color: #444;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.625rem;
+    }
+
+    .pricing-features li::before {
+      content: '✓';
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--black);
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    /* FAQ */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      border-top: 1px solid var(--border);
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 0;
+    }
+
+    .faq-q {
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      user-select: none;
+    }
+
+    .faq-q::after {
+      content: '+';
+      font-size: 1.25rem;
+      font-weight: 300;
+      color: var(--mid);
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+
+    .faq-item.open .faq-q::after {
+      transform: rotate(45deg);
+    }
+
+    .faq-a {
+      font-size: 0.9375rem;
+      color: #555;
+      line-height: 1.7;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding-top 0.3s ease;
+    }
+
+    .faq-item.open .faq-a {
+      max-height: 300px;
+      padding-top: 1rem;
+    }
+
+    /* CTA BANNER */
+    .cta-banner {
+      background: var(--black);
+      color: var(--white);
+      text-align: center;
+      padding: 5rem 2.5rem;
+    }
+
+    .cta-banner .section-title {
+      color: var(--white);
+      margin: 0 auto 2rem;
+    }
+
+    .btn-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--white);
+      color: var(--black);
+      text-decoration: none;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      padding: 0.875rem 1.75rem;
+      border-radius: 6px;
+      transition: opacity 0.15s, gap 0.2s;
+    }
+
+    .btn-white:hover { opacity: 0.85; gap: 0.75rem; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .footer-logo {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.125rem;
+      letter-spacing: -0.02em;
+      color: var(--black);
+      text-decoration: none;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.75rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 0.875rem;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover { color: var(--black); }
+
+    .footer-copy {
+      font-size: 0.8125rem;
+      color: var(--mid);
+    }
+
+    /* PRIVACY PAGE */
+    .privacy-page {
+      display: none;
+      padding: 7rem 2.5rem 5rem;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .privacy-page h1 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 2.5rem;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.5rem;
+    }
+
+    .privacy-page .updated {
+      font-size: 0.875rem;
+      color: var(--mid);
+      margin-bottom: 3rem;
+    }
+
+    .privacy-page h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.375rem;
+      letter-spacing: -0.02em;
+      margin: 2.5rem 0 0.875rem;
+    }
+
+    .privacy-page p, .privacy-page li {
+      font-size: 0.9375rem;
+      color: #444;
+      line-height: 1.75;
+      margin-bottom: 0.75rem;
+    }
+
+    .privacy-page ul {
+      padding-left: 1.25rem;
+    }
+
+    .privacy-page a {
+      color: var(--black);
+    }
+
+    /* HOME vs PRIVACY routing */
+    body.page-privacy .home-content { display: none; }
+    body.page-privacy .privacy-page { display: block; }
+    body.page-home .privacy-page { display: none; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-right { gap: 1rem; }
+      .hero { padding: 7rem 1.25rem 4rem; }
+      .section { padding: 4rem 1.25rem; }
+      .strip { padding: 1.5rem 1.25rem; gap: 1.5rem; }
+      .step { border-right: none; border-bottom: 1px solid var(--border); }
+      .step:last-child { border-bottom: none; }
+      footer { padding: 2rem 1.25rem; flex-direction: column; align-items: flex-start; }
+      .cta-banner { padding: 4rem 1.25rem; }
+      .privacy-page { padding: 6rem 1.25rem 4rem; }
+    }
+
+    @media (max-width: 500px) {
+      .nav-cta span { display: none; }
+      .hero-actions { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body class="page-home">
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo" onclick="showPage('home'); return false;">SectionDrop</a>
+  <div class="nav-right">
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('en')" data-lang="en">EN</button>
+      <button class="lang-btn" onclick="setLang('nl')" data-lang="nl">NL</button>
+    </div>
+    <a href="https://apps.shopify.com/sectiondrop" class="nav-cta" target="_blank">
+      <span data-i18n="nav_cta">Install app</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</nav>
+
+<!-- HOME CONTENT -->
+<div class="home-content">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow" data-i18n="hero_eyebrow">For Shopify 2.0 themes</div>
+    <h1 class="hero-title">
+      <span data-i18n="hero_title_1">Professional Liquid sections.</span><br>
+      <em data-i18n="hero_title_2">Buy once, own forever.</em>
+    </h1>
+    <p class="hero-sub" data-i18n="hero_sub">
+      Add professionally designed sections to your Shopify theme. No coding required. Install directly from the app into your theme editor.
+    </p>
+    <div class="hero-actions">
+      <a href="https://apps.shopify.com/sectiondrop" class="btn-primary" target="_blank">
+        <span data-i18n="hero_cta">Get started free</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="https://sectiondrop-2.myshopify.com/" class="btn-secondary" target="_blank">
+        <span data-i18n="hero_demo">View demo store</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- STRIP -->
+  <div class="strip">
+    <div class="strip-item"><span class="strip-dot"></span><span data-i18n="strip_1">One-time purchase</span></div>
+    <div class="strip-item"><span class="strip-dot"></span><span data-i18n="strip_2">Works with any Shopify 2.0 theme</span></div>
+    <div class="strip-item"><span class="strip-dot"></span><span data-i18n="strip_3">No coding required</span></div>
+    <div class="strip-item"><span class="strip-dot"></span><span data-i18n="strip_4">Try before you buy</span></div>
+    <div class="strip-item"><span class="strip-dot"></span><span data-i18n="strip_5">Lifetime updates</span></div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <section class="section">
+    <div class="section-label" data-i18n="how_label">How it works</div>
+    <h2 class="section-title" data-i18n="how_title">From the app to your theme in minutes.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-title" data-i18n="step1_title">Browse the library</div>
+        <div class="step-body" data-i18n="step1_body">Browse sections by category. Each section has a live preview so you can see exactly what you are getting.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-title" data-i18n="step2_title">Try before you buy</div>
+        <div class="step-body" data-i18n="step2_body">Preview any section in a private copy of your own theme. Your live store is never affected.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-title" data-i18n="step3_title">Purchase once</div>
+        <div class="step-body" data-i18n="step3_body">Buy only the sections you need. One payment — the section is yours forever, including all future updates.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-title" data-i18n="step4_title">Install in your theme</div>
+        <div class="step-body" data-i18n="step4_body">Select your theme and click install. The section appears immediately in your Shopify theme editor.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="section" style="padding-top: 0;">
+    <div class="section-label" data-i18n="pricing_label">Pricing</div>
+    <h2 class="section-title" data-i18n="pricing_title">Simple, transparent pricing.</h2>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-tag light" data-i18n="plan1_tag">Free</div>
+        <div class="pricing-name" data-i18n="plan1_name">Browse & Try</div>
+        <div class="pricing-price" data-i18n="plan1_price">Free to install</div>
+        <ul class="pricing-features">
+          <li data-i18n="plan1_f1">Full access to the section library</li>
+          <li data-i18n="plan1_f2">Try any section before purchasing</li>
+          <li data-i18n="plan1_f3">Private theme preview</li>
+        </ul>
+      </div>
+      <div class="pricing-card">
+        <div class="pricing-tag light" data-i18n="plan2_tag">Pay per section</div>
+        <div class="pricing-name" data-i18n="plan2_name">Individual</div>
+        <div class="pricing-price" data-i18n="plan2_price">€9 per section, one-time</div>
+        <ul class="pricing-features">
+          <li data-i18n="plan2_f1">Buy only what you need</li>
+          <li data-i18n="plan2_f2">Yours forever</li>
+          <li data-i18n="plan2_f3">Lifetime updates included</li>
+          <li data-i18n="plan2_f4">Reinstall in any theme</li>
+        </ul>
+      </div>
+      <div class="pricing-card">
+        <div class="pricing-tag" data-i18n="plan3_tag">Pro</div>
+        <div class="pricing-name" data-i18n="plan3_name">SectionDrop Pro</div>
+        <div class="pricing-price" data-i18n="plan3_price">€16.99/month or €169.90/year</div>
+        <ul class="pricing-features">
+          <li data-i18n="plan3_f1">Unlimited access to all sections</li>
+          <li data-i18n="plan3_f2">Every new section included automatically</li>
+          <li data-i18n="plan3_f3">Lifetime updates</li>
+          <li data-i18n="plan3_f4">Cancel anytime</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" style="padding-top: 0;">
+    <div class="section-label" data-i18n="faq_label">FAQ</div>
+    <h2 class="section-title" data-i18n="faq_title">Common questions.</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" data-i18n="faq1_q">Does SectionDrop work with my theme?</div>
+        <div class="faq-a" data-i18n="faq1_a">SectionDrop works with all Shopify 2.0 themes, including Dawn, Horizon, Refresh, and any other theme built on the 2.0 architecture. Sections automatically inherit your theme's fonts and colors.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" data-i18n="faq2_q">Do I need to know how to code?</div>
+        <div class="faq-a" data-i18n="faq2_a">No. Sections are installed directly from the app with one click. Everything is customizable through the Shopify theme editor — no code required.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" data-i18n="faq3_q">What happens to my sections if I cancel Pro?</div>
+        <div class="faq-a" data-i18n="faq3_a">Sections that are already installed in your theme remain there. Cancelling Pro only means you lose access to install new sections without purchasing them individually.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" data-i18n="faq4_q">Can I try a section before buying?</div>
+        <div class="faq-a" data-i18n="faq4_a">Yes. Every section can be previewed in a private copy of your own theme before you purchase. Your live store is never affected during the preview.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" data-i18n="faq5_q">Can I reinstall a section in a different theme?</div>
+        <div class="faq-a" data-i18n="faq5_a">Yes. Purchased sections can be reinstalled in any of your themes at any time, as many times as you need.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <div class="cta-banner">
+    <h2 class="section-title" data-i18n="cta_title">Ready to improve your store?</h2>
+    <a href="https://apps.shopify.com/sectiondrop" class="btn-white" target="_blank">
+      <span data-i18n="cta_btn">Install SectionDrop free</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+
+</div><!-- /home-content -->
+
+<!-- PRIVACY PAGE -->
+<div class="privacy-page" id="privacy-content">
+  <h1 data-i18n="privacy_title">Privacy Policy</h1>
+  <p class="updated"><span data-i18n="privacy_updated">Last updated:</span> May 22, 2026</p>
+
+  <h2 data-i18n="pp_h1">1. Who we are</h2>
+  <p data-i18n="pp_p1">SectionDrop is a Shopify app developed and operated by Ecom Studio Nimma. If you have questions about this privacy policy, you can contact us at <a href="mailto:hallo@ecomstudionimma.nl">hallo@ecomstudionimma.nl</a>.</p>
+
+  <h2 data-i18n="pp_h2">2. What data we collect</h2>
+  <p data-i18n="pp_p2">When you install and use SectionDrop, we collect the following data:</p>
+  <ul>
+    <li data-i18n="pp_l1">Your Shopify store domain and access token (required for authentication and API access)</li>
+    <li data-i18n="pp_l2">Purchase records (which sections you have purchased)</li>
+    <li data-i18n="pp_l3">Installation records (which sections are installed in which themes)</li>
+    <li data-i18n="pp_l4">Reviews you submit within the app</li>
+    <li data-i18n="pp_l5">Section ideas you submit via the Suggest feature</li>
+    <li data-i18n="pp_l6">Your merchant name (entered during onboarding)</li>
+  </ul>
+  <p data-i18n="pp_p3">We do not collect data from your store's customers.</p>
+
+  <h2 data-i18n="pp_h3">3. How we use your data</h2>
+  <p data-i18n="pp_p4">We use your data solely to operate the SectionDrop app. This includes:</p>
+  <ul>
+    <li data-i18n="pp_l7">Authenticating your session</li>
+    <li data-i18n="pp_l8">Processing purchases and managing your section library</li>
+    <li data-i18n="pp_l9">Installing and updating sections in your Shopify theme</li>
+    <li data-i18n="pp_l10">Sending update notifications for sections you have purchased</li>
+  </ul>
+  <p data-i18n="pp_p5">We do not sell your data to third parties.</p>
+
+  <h2 data-i18n="pp_h4">4. Data storage</h2>
+  <p data-i18n="pp_p6">Your data is stored in a secure database hosted on Vercel infrastructure. Access tokens are stored as required by Shopify's OAuth flow and are used exclusively to communicate with Shopify's API on your behalf.</p>
+
+  <h2 data-i18n="pp_h5">5. Data retention and deletion</h2>
+  <p data-i18n="pp_p7">When you uninstall SectionDrop, your session data is removed automatically. You can request full deletion of all your data by contacting us at <a href="mailto:hallo@ecomstudionimma.nl">hallo@ecomstudionimma.nl</a>. We comply with Shopify's mandatory GDPR webhooks for data erasure.</p>
+
+  <h2 data-i18n="pp_h6">6. Third-party services</h2>
+  <p data-i18n="pp_p8">SectionDrop uses the following third-party services:</p>
+  <ul>
+    <li data-i18n="pp_l11">Shopify — for authentication, billing, and theme API access</li>
+    <li data-i18n="pp_l12">Vercel — for hosting and infrastructure</li>
+    <li data-i18n="pp_l13">Anthropic Claude API — for the Store Analyzer feature (page HTML is analyzed but not stored)</li>
+  </ul>
+
+  <h2 data-i18n="pp_h7">7. Your rights</h2>
+  <p data-i18n="pp_p9">You have the right to access, correct, or delete the personal data we hold about you. To exercise these rights, contact us at <a href="mailto:hallo@ecomstudionimma.nl">hallo@ecomstudionimma.nl</a>.</p>
+
+  <h2 data-i18n="pp_h8">8. Changes to this policy</h2>
+  <p data-i18n="pp_p10">We may update this privacy policy from time to time. The date at the top of this page reflects the most recent update.</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="/" class="footer-logo" onclick="showPage('home'); return false;">SectionDrop</a>
+  <ul class="footer-links">
+    <li><a href="/privacy" onclick="showPage('privacy'); return false;" data-i18n="footer_privacy">Privacy Policy</a></li>
+    <li><a href="mailto:hallo@ecomstudionimma.nl" data-i18n="footer_contact">Contact</a></li>
+    <li><a href="https://apps.shopify.com/sectiondrop" target="_blank" data-i18n="footer_app">Shopify App</a></li>
+  </ul>
+  <span class="footer-copy">© 2026 Ecom Studio Nimma</span>
+</footer>
+
+<script>
+  // --- TRANSLATIONS ---
+  const translations = {
+    en: {
+      nav_cta: 'Install app',
+      hero_eyebrow: 'For Shopify 2.0 themes',
+      hero_title_1: 'Professional Liquid sections.',
+      hero_title_2: 'Buy once, own forever.',
+      hero_sub: 'Add professionally designed sections to your Shopify theme. No coding required. Install directly from the app into your theme editor.',
+      hero_cta: 'Get started free',
+      hero_demo: 'View demo store',
+      strip_1: 'One-time purchase',
+      strip_2: 'Works with any Shopify 2.0 theme',
+      strip_3: 'No coding required',
+      strip_4: 'Try before you buy',
+      strip_5: 'Lifetime updates',
+      how_label: 'How it works',
+      how_title: 'From the app to your theme in minutes.',
+      step1_title: 'Browse the library',
+      step1_body: 'Browse sections by category. Each section has a live preview so you can see exactly what you are getting.',
+      step2_title: 'Try before you buy',
+      step2_body: 'Preview any section in a private copy of your own theme. Your live store is never affected.',
+      step3_title: 'Purchase once',
+      step3_body: 'Buy only the sections you need. One payment — the section is yours forever, including all future updates.',
+      step4_title: 'Install in your theme',
+      step4_body: 'Select your theme and click install. The section appears immediately in your Shopify theme editor.',
+      pricing_label: 'Pricing',
+      pricing_title: 'Simple, transparent pricing.',
+      plan1_tag: 'Free',
+      plan1_name: 'Browse & Try',
+      plan1_price: 'Free to install',
+      plan1_f1: 'Full access to the section library',
+      plan1_f2: 'Try any section before purchasing',
+      plan1_f3: 'Private theme preview',
+      plan2_tag: 'Pay per section',
+      plan2_name: 'Individual',
+      plan2_price: '€9 per section, one-time',
+      plan2_f1: 'Buy only what you need',
+      plan2_f2: 'Yours forever',
+      plan2_f3: 'Lifetime updates included',
+      plan2_f4: 'Reinstall in any theme',
+      plan3_tag: 'Pro',
+      plan3_name: 'SectionDrop Pro',
+      plan3_price: '€16.99/month or €169.90/year',
+      plan3_f1: 'Unlimited access to all sections',
+      plan3_f2: 'Every new section included automatically',
+      plan3_f3: 'Lifetime updates',
+      plan3_f4: 'Cancel anytime',
+      faq_label: 'FAQ',
+      faq_title: 'Common questions.',
+      faq1_q: 'Does SectionDrop work with my theme?',
+      faq1_a: 'SectionDrop works with all Shopify 2.0 themes, including Dawn, Horizon, Refresh, and any other theme built on the 2.0 architecture. Sections automatically inherit your theme\'s fonts and colors.',
+      faq2_q: 'Do I need to know how to code?',
+      faq2_a: 'No. Sections are installed directly from the app with one click. Everything is customizable through the Shopify theme editor — no code required.',
+      faq3_q: 'What happens to my sections if I cancel Pro?',
+      faq3_a: 'Sections that are already installed in your theme remain there. Cancelling Pro only means you lose access to install new sections without purchasing them individually.',
+      faq4_q: 'Can I try a section before buying?',
+      faq4_a: 'Yes. Every section can be previewed in a private copy of your own theme before you purchase. Your live store is never affected during the preview.',
+      faq5_q: 'Can I reinstall a section in a different theme?',
+      faq5_a: 'Purchased sections can be reinstalled in any of your themes at any time, as many times as you need.',
+      cta_title: 'Ready to improve your store?',
+      cta_btn: 'Install SectionDrop free',
+      footer_privacy: 'Privacy Policy',
+      footer_contact: 'Contact',
+      footer_app: 'Shopify App',
+      privacy_title: 'Privacy Policy',
+      privacy_updated: 'Last updated:',
+      pp_h1: '1. Who we are',
+      pp_p1: 'SectionDrop is a Shopify app developed and operated by Ecom Studio Nimma. If you have questions about this privacy policy, you can contact us at hallo@ecomstudionimma.nl.',
+      pp_h2: '2. What data we collect',
+      pp_p2: 'When you install and use SectionDrop, we collect the following data:',
+      pp_l1: 'Your Shopify store domain and access token (required for authentication and API access)',
+      pp_l2: 'Purchase records (which sections you have purchased)',
+      pp_l3: 'Installation records (which sections are installed in which themes)',
+      pp_l4: 'Reviews you submit within the app',
+      pp_l5: 'Section ideas you submit via the Suggest feature',
+      pp_l6: 'Your merchant name (entered during onboarding)',
+      pp_p3: 'We do not collect data from your store\'s customers.',
+      pp_h3: '3. How we use your data',
+      pp_p4: 'We use your data solely to operate the SectionDrop app. This includes:',
+      pp_l7: 'Authenticating your session',
+      pp_l8: 'Processing purchases and managing your section library',
+      pp_l9: 'Installing and updating sections in your Shopify theme',
+      pp_l10: 'Sending update notifications for sections you have purchased',
+      pp_p5: 'We do not sell your data to third parties.',
+      pp_h4: '4. Data storage',
+      pp_p6: 'Your data is stored in a secure database hosted on Vercel infrastructure. Access tokens are stored as required by Shopify\'s OAuth flow and are used exclusively to communicate with Shopify\'s API on your behalf.',
+      pp_h5: '5. Data retention and deletion',
+      pp_p7: 'When you uninstall SectionDrop, your session data is removed automatically. You can request full deletion of all your data by contacting us at hallo@ecomstudionimma.nl. We comply with Shopify\'s mandatory GDPR webhooks for data erasure.',
+      pp_h6: '6. Third-party services',
+      pp_p8: 'SectionDrop uses the following third-party services:',
+      pp_l11: 'Shopify — for authentication, billing, and theme API access',
+      pp_l12: 'Vercel — for hosting and infrastructure',
+      pp_l13: 'Anthropic Claude API — for the Store Analyzer feature (page HTML is analyzed but not stored)',
+      pp_h7: '7. Your rights',
+      pp_p9: 'You have the right to access, correct, or delete the personal data we hold about you. To exercise these rights, contact us at hallo@ecomstudionimma.nl.',
+      pp_h8: '8. Changes to this policy',
+      pp_p10: 'We may update this privacy policy from time to time. The date at the top of this page reflects the most recent update.',
+    },
+    nl: {
+      nav_cta: 'App installeren',
+      hero_eyebrow: 'Voor Shopify 2.0 thema\'s',
+      hero_title_1: 'Professionele Liquid secties.',
+      hero_title_2: 'Eén keer kopen, altijd van jou.',
+      hero_sub: 'Voeg professioneel ontworpen secties toe aan je Shopify thema. Geen code nodig. Installeer direct vanuit de app in je theme editor.',
+      hero_cta: 'Gratis aan de slag',
+      hero_demo: 'Bekijk demo store',
+      strip_1: 'Eenmalige aankoop',
+      strip_2: 'Werkt met elk Shopify 2.0 thema',
+      strip_3: 'Geen code nodig',
+      strip_4: 'Probeer voor je koopt',
+      strip_5: 'Levenslange updates',
+      how_label: 'Hoe het werkt',
+      how_title: 'Van de app naar je thema in minuten.',
+      step1_title: 'Blader door de library',
+      step1_body: 'Blader door secties per categorie. Elke sectie heeft een live preview zodat je precies ziet wat je krijgt.',
+      step2_title: 'Probeer voor je koopt',
+      step2_body: 'Bekijk elke sectie in een privékopie van je eigen thema. Je live store wordt nooit beïnvloed.',
+      step3_title: 'Eén keer betalen',
+      step3_body: 'Koop alleen de secties die je nodig hebt. Één betaling — de sectie is voor altijd van jou, inclusief alle toekomstige updates.',
+      step4_title: 'Installeer in je thema',
+      step4_body: 'Kies je thema en klik op installeren. De sectie verschijnt direct in je Shopify theme editor.',
+      pricing_label: 'Prijzen',
+      pricing_title: 'Eenvoudige, transparante prijzen.',
+      plan1_tag: 'Gratis',
+      plan1_name: 'Blader & Probeer',
+      plan1_price: 'Gratis te installeren',
+      plan1_f1: 'Volledige toegang tot de sectie library',
+      plan1_f2: 'Probeer elke sectie voor aankoop',
+      plan1_f3: 'Privé thema preview',
+      plan2_tag: 'Per sectie',
+      plan2_name: 'Individueel',
+      plan2_price: '€9 per sectie, eenmalig',
+      plan2_f1: 'Koop alleen wat je nodig hebt',
+      plan2_f2: 'Voor altijd van jou',
+      plan2_f3: 'Levenslange updates inbegrepen',
+      plan2_f4: 'Herinstalleer in elk thema',
+      plan3_tag: 'Pro',
+      plan3_name: 'SectionDrop Pro',
+      plan3_price: '€16,99/maand of €169,90/jaar',
+      plan3_f1: 'Onbeperkte toegang tot alle secties',
+      plan3_f2: 'Elke nieuwe sectie automatisch inbegrepen',
+      plan3_f3: 'Levenslange updates',
+      plan3_f4: 'Op elk moment opzeggen',
+      faq_label: 'Veelgestelde vragen',
+      faq_title: 'Veelgestelde vragen.',
+      faq1_q: 'Werkt SectionDrop met mijn thema?',
+      faq1_a: 'SectionDrop werkt met alle Shopify 2.0 thema\'s, waaronder Dawn, Horizon, Refresh en elk ander thema gebouwd op de 2.0-architectuur. Secties nemen automatisch de lettertypes en kleuren van je thema over.',
+      faq2_q: 'Moet ik kunnen programmeren?',
+      faq2_a: 'Nee. Secties worden met één klik direct vanuit de app geïnstalleerd. Alles is aanpasbaar via de Shopify theme editor — geen code nodig.',
+      faq3_q: 'Wat gebeurt er met mijn secties als ik Pro opzeg?',
+      faq3_a: 'Secties die al in je thema zijn geïnstalleerd blijven daar staan. Pro opzeggen betekent alleen dat je geen nieuwe secties meer kunt installeren zonder ze afzonderlijk te kopen.',
+      faq4_q: 'Kan ik een sectie proberen voor ik betaal?',
+      faq4_a: 'Ja. Elke sectie kan worden bekeken in een privékopie van je eigen thema voordat je koopt. Je live store wordt nooit beïnvloed tijdens de preview.',
+      faq5_q: 'Kan ik een sectie herinstalleren in een ander thema?',
+      faq5_a: 'Gekochte secties kunnen op elk moment opnieuw worden geïnstalleerd in al je thema\'s, zo vaak als je wilt.',
+      cta_title: 'Klaar om je store te verbeteren?',
+      cta_btn: 'Installeer SectionDrop gratis',
+      footer_privacy: 'Privacybeleid',
+      footer_contact: 'Contact',
+      footer_app: 'Shopify App',
+      privacy_title: 'Privacybeleid',
+      privacy_updated: 'Laatst bijgewerkt:',
+      pp_h1: '1. Wie wij zijn',
+      pp_p1: 'SectionDrop is een Shopify-app ontwikkeld en beheerd door Ecom Studio Nimma. Als je vragen hebt over dit privacybeleid, kun je contact met ons opnemen via hallo@ecomstudionimma.nl.',
+      pp_h2: '2. Welke gegevens we verzamelen',
+      pp_p2: 'Wanneer je SectionDrop installeert en gebruikt, verzamelen we de volgende gegevens:',
+      pp_l1: 'Je Shopify store-domein en toegangstoken (vereist voor authenticatie en API-toegang)',
+      pp_l2: 'Aankooprecords (welke secties je hebt gekocht)',
+      pp_l3: 'Installatierecords (welke secties in welke thema\'s zijn geïnstalleerd)',
+      pp_l4: 'Reviews die je in de app indient',
+      pp_l5: 'Sectie-ideeën die je indient via de Suggest-functie',
+      pp_l6: 'Je merchant-naam (ingevoerd tijdens de onboarding)',
+      pp_p3: 'We verzamelen geen gegevens van de klanten van je winkel.',
+      pp_h3: '3. Hoe we je gegevens gebruiken',
+      pp_p4: 'We gebruiken je gegevens uitsluitend om de SectionDrop-app te laten werken. Dit omvat:',
+      pp_l7: 'Je sessie authenticeren',
+      pp_l8: 'Aankopen verwerken en je sectie-library beheren',
+      pp_l9: 'Secties installeren en bijwerken in je Shopify-thema',
+      pp_l10: 'Updatemeldingen sturen voor secties die je hebt gekocht',
+      pp_p5: 'We verkopen je gegevens niet aan derden.',
+      pp_h4: '4. Gegevensopslag',
+      pp_p6: 'Je gegevens worden opgeslagen in een beveiligde database op Vercel-infrastructuur. Toegangstokens worden opgeslagen zoals vereist door de OAuth-flow van Shopify en worden uitsluitend gebruikt om namens jou met de API van Shopify te communiceren.',
+      pp_h5: '5. Gegevensbewaring en -verwijdering',
+      pp_p7: 'Wanneer je SectionDrop verwijdert, worden je sessiegegevens automatisch verwijderd. Je kunt een volledige verwijdering van al je gegevens aanvragen door contact met ons op te nemen via hallo@ecomstudionimma.nl. We voldoen aan de verplichte GDPR-webhooks van Shopify voor het wissen van gegevens.',
+      pp_h6: '6. Diensten van derden',
+      pp_p8: 'SectionDrop maakt gebruik van de volgende diensten van derden:',
+      pp_l11: 'Shopify — voor authenticatie, facturering en toegang tot de thema-API',
+      pp_l12: 'Vercel — voor hosting en infrastructuur',
+      pp_l13: 'Anthropic Claude API — voor de Store Analyzer-functie (pagina-HTML wordt geanalyseerd maar niet opgeslagen)',
+      pp_h7: '7. Jouw rechten',
+      pp_p9: 'Je hebt het recht op inzage, correctie of verwijdering van de persoonsgegevens die we over je bewaren. Neem contact met ons op via hallo@ecomstudionimma.nl om deze rechten uit te oefenen.',
+      pp_h8: '8. Wijzigingen in dit beleid',
+      pp_p10: 'We kunnen dit privacybeleid van tijd tot tijd bijwerken. De datum bovenaan deze pagina geeft de meest recente update aan.',
+    }
+  };
+
+  let currentLang = 'en';
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      if (translations[lang][key]) {
+        el.textContent = translations[lang][key];
+      }
+    });
+    document.documentElement.lang = lang;
+  }
+
+  function showPage(page) {
+    if (page === 'privacy') {
+      document.body.className = 'page-privacy';
+      window.history.pushState({}, '', '/privacy');
+      window.scrollTo(0, 0);
+    } else {
+      document.body.className = 'page-home';
+      window.history.pushState({}, '', '/');
+      window.scrollTo(0, 0);
+    }
+  }
+
+  // Handle initial URL
+  if (window.location.pathname === '/privacy') {
+    showPage('privacy');
+  }
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // Subtle entrance animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.step, .pricing-card, .faq-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(16px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
